@@ -1,8 +1,8 @@
 package yohanes.nlp;
 
-import edu.stanford.nlp.process.AbstractTokenizer;
 import opennlp.tools.postag.*;
 import opennlp.tools.tokenize.SimpleTokenizer;
+import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.util.*;
 
 import java.io.*;
@@ -135,11 +135,8 @@ public class App
     }
 
     public void trainPOSTaggerModel(String trainFile, String modelFile) throws IOException {
-//        InputStream dataIn = null;
-//        dataIn = new FileInputStream(trainFile);
         InputStreamFactory isf = new MarkableFileInputStreamFactory(new File(trainFile));
         ObjectStream<String> lineStream = new PlainTextByLineStream(isf, "UTF-8");
-//        ObjectStream<String> lineStream = new PlainTextByLineStream(dataIn, "UTF-8");
         ObjectStream<POSSample> sampleStream = new WordTagSampleStream(lineStream);
         POSModel model = POSTaggerME.train("id", sampleStream, TrainingParameters.defaultParams(), new POSTaggerFactory());
 
@@ -157,7 +154,7 @@ public class App
         modelOut.close();
     }
 
-    public String tagPOS(SimpleTokenizer tokenizer, POSTaggerME tagger, String line) {
+    public String tagPOS(Tokenizer tokenizer, POSTaggerME tagger, String line) {
         StringBuilder sb = new StringBuilder();
         if (line != null && !line.isEmpty()) {
             String[] words = (tokenizer != null) ? tokenizer.tokenize(line) : line.split(" ");

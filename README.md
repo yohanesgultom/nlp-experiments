@@ -24,5 +24,5 @@ $ sh target/appassembler/bin/nlp pos-tag ../../data/pos-tagging/Indonesian_Manua
 
 POS tagging by splitting training data to training and test data:
 ```
-$ sh target/appassembler/bin/nlp pos-tag -split 10:1 ../../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv
+$ sh target/appassembler/bin/nlp pos-tag -split 9:1 ../../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv
 ```

@@ -37,14 +37,17 @@ def tag_file(file_path, tagger):
     input = open(file_path, 'r')
     output = open(file_path + '.nltk.tagged', 'w')
     raw = input.read()
+    res = []
     for s in raw.split('\n'):
         tagged = tagger.tag(nltk.word_tokenize(s.strip()))
+        res.append(tagged)
         words = []
         for t in tagged:
             words.append(t[0] + '_' + t[1])
         output.write('\t'.join(words))
     input.close()
     output.close()
+    return res
 
 def remove_tags(sent):
     res = []

@@ -1,1 +1,1214 @@
-(S	  (NP-SBJ (NN Kera))	  (SBAR-PRD	    (SC untuk)	    (S	      (NP-SBJ *)	      (VP (VB amankan) (NP (NN pesta) (NN olahraga)))))) (p=4.33627e-29)(S	  (S	    (NP-SBJ (NN Monyet) (PR ini))	    (VP	      (VB diikat)	      (NP *-1)	      (PP (IN dengan) (NP (NN tali) (JJ panjang)))))	  (CC dan)	  (S	    (NP-SBJ	      (NP	        (NN pelatih)	        (SBAR	          (SC yang)	          (S	            (NP-SBJ *)	            (VP	              (VB mengawasi)	              (S	                (NP-SBJ (PRP mereka))	                (VP	                  (MD akan)	                  (VP	                    (VB melepas)	                    (NP (NN tali))	                    (ADVP (RB begitu)))))))))	      (NP (NN monyet-monyet) (JJ kecil)))	    (VP (ADJP (JJ lain)) (VB mendekat)))	  (Z .)) (p=9.05711e-86)(S	  (NP-SBJ	    (ADJP	      (ADJP (NEG Belum) (JJ lama))	      (VP	        (NP (NP (PR ini)) (NP (NN kawanan) (NN monyet)))	        (VP (VB menyerbu))))	    (NN kantor))	  (NP (NN perdana) (NN menteri))	  (S	    (CC dan)	    (NP-SBJ (NN departemen))	    (NP-PRD (NN pertahanan))	    (Z .))) (p=7.01381e-77)(S	  (NP-SBJ	    (NP (CD Dua) (NN miliarder))	    (NP	      (NP (NNP Amerika) (NNP Bill) (NNP Gates))	      (CC dan)	      (NP (NNP Warren) (NNP Buffett))))	  (VP	    (MD akan)	    (VP	      (VB mengadakan)	      (NP (NN jamuan) (NN makan malam))	      (PP	        (IN di)	        (NP	          (NNP Beijing)	          (PP	            (IN bagi)	            (NP (CD sejumlah) (NN orang) (JJ terkaya)))	          (PP (IN di) (NP (NNP Cina)))))))	  (Z .)) (p=1.00241e-72)(S	  (NP-SBJ (PRP Dia))	  (VP	    (VB mengatakan)	    (PP (IN kepada) (NP (NNP BBC)))	    (SBAR	      (SC bahwa)	      (S	        (NP-SBJ (PRP dia))	        (VP	          (MD sudah)	          (VP	            (VB berencana)	            (S	              (NP-SBJ *-1)	              (VP	                (VB menyumbangkan)	                (NP (CD seluruh) (NN harta) (PRP nya))))))))	    (PP	      (IN untuk)	      (NP	        (NN amal)	        (SBAR	          (SC bila)	          (S (NP-SBJ (PRP dia)) (VP (VB meninggal)) (Z .))))))) (p=2.44925e-63)(S	  (NP-SBJ (NP (NN Kisah) (NN pendiri)) (NNP Facebook))	  (VP (VB dibuat) (NP (NP *-1) (NN komik)))) (p=8.45909e-27)(S	  (NP-SBJ	    (NN Pemuda)	    (SBAR	      0	      (S	        (NP-SBJ *)	        (VP	          (VB berusia)	          (S	            (NP-SBJ-1 (CD 26) (NN tahun) (PR ini))	            (VP	              (VB mengatakan)	              (S	                (Z ")	                (S-NOM-SBJ	                  (NP-SBJ (PRP Saya))	                  (VP (VB mengharapkan)))	                (VP	                  (NEG tidak)	                  (VB ada)	                  (NP	                    (NN orang)	                    (SBAR	                      (SC yang)	                      (S	                        (NP-SBJ *)	                        (VP	                          (VB membuat)	                          (NP (NN film))	                          (PP (IN tentang) (NP (PRP saya)))))))	                  (SBAR	                    (SC ketika)	                    (S	                      (NP-SBJ (PRP saya))	                      (VP (MD masih) (VP (VB hidup))))))	                (Z ,)	                (Z "))))))))	  (VP	    (VB kata)	    (NP (PRP nya))	    (PP	      (IN dalam)	      (NP	        (NP (NND sebuah) (NN konferensi))	        (NP (NN teknologi) (NNP Juni))	        (NN silam))))	  (Z .)) (p=8.57765e-108)(S	  (NP-SBJ (PRP Mereka))	  (VP	    (VB terlibat)	    (NP *-1)	    (PP (IN dalam) (NP (NN sengketa) (NN hukum)))	    (SBAR	      (SC yang)	      (S	        (NP-SBJ *)	        (VP	          (VP	            (VB berlarut-larut)	            (PP (IN pada) (NP (NN tahun) (CD 2008))))	          (CC dan)	          (VP	            (VB diakhiri)	            (NP *-2)	            (SBAR	              (SC dengan)	              (S	                (NP-SBJ	                  (NN pembayaran)	                  (SBAR (SC yang) (NP *-3)))	                (VP	                  (VB dirahasiakan)	                  (NP (NN jumlah) (PRP nya))	                  (PP	                    (IN kepada)	                    (NP	                      (NP (NNP Cameron))	                      (CC dan)	                      (NP (NNP Tyler) (NNP Winklevoss)))))))))))	    (Z ,)	    (SBAR	      (SC yang)	      (NP	        (NN kini)	        (S-NOM	          (NP-SBJ *)	          (VP	            (RB juga)	            (VB membuat)	            (NP (NN situs) (NN jejaring) (JJ sosial))	            (SBAR	              0	              (S	                (NP-SBJ *)	                (VP (VB bernama) (NP (NNP ConnectU)))	                (Z .))))))))) (p=2.48728e-150)(S	  (NP-SBJ	    (NP (CD Salah satu))	    (PP	      (IN dari)	      (NP	        (NN pihak)	        (SBAR	          (SC yang)	          (S (NP-SBJ *) (VP (VB berselisih)) (Z ,))))))	  (VP	    (VB adalah)	    (NP	      (NP (NNP Anthony) (NNP Thomas))	      (NP (NN ahli) (NN konstruksi)))	    (PP (IN dari) (NP (NNP Kalifornia)))	    (SBAR	      (SC yang)	      (S	        (NP-SBJ *)	        (VP	          (VB mengatakan)	          (SBAR	            0	            (S	              (NP-SBJ (PRP dia))	              (VP	                (MD telah)	                (VP	                  (VB membayar)	                  (PP	                    (IN kepada)	                    (NP	                      (CD dua)	                      (NP	                        (NP	                          (NN orang)	                          (NN agen)	                          (NN permata)	                          (NNP Brasil))	                        (NP (NN senilai) (NNP US))	                        (NP (QP (SYM $) (CD 60.000)) *U*))	                      (SBAR	                        (SC untuk)	                        (S	                          (NP-SBJ	                            (NN jamrud)	                            (PR tersebut))	                          (ADJP-PRD	                            (NEG tak)	                            (JJ lama)	                            (SBAR	                              (SC setelah)	                              (S	                                (NP-SBJ *)	                                (VP	                                  (VB ditemukan)	                                  (NP-2 *-1)	                                  (S	                                    (NP-SBJ	                                      (CD sembilan)	                                      (NN tahun))	                                    (VP (VB lalu)))))))	                          (Z .)))))))))))))) (p=7.51689e-158)(S	  (NP-SBJ	    (NP (CD Satu) (NN hal))	    (SBAR	      (SC yang)	      (S	        (NP-SBJ *)	        (VP	          (VB diketahui)	          (NP-2 *-1)	          (S	            (NP-SBJ (NN batu) (PR itu))	            (VP	              (MD sempat)	              (VP	                (VB disimpan)	                (NP *-2)	                (PP	                  (IN di)	                  (NP (NN lemari) (NN besi) (NN bank)))	                (PP	                  (IN di)	                  (NP	                    (NP (NNP New) (NNP Orleans))	                    (SBAR	                      (SC yang)	                      (S	                        (NP-SBJ *)	                        (VP (VB terkena) (NP *-3))))))	                (NP	                  (NN banjir)	                  (SBAR	                    (SC ketika)	                    (S	                      (NP-SBJ (NN daerah) (PR itu))	                      (VP	                        (VB diterjang)	                        (NP *-4)	                        (NP (NNP Badai) (NNP Katrina)))	                      (Z ,))))	                (SBAR	                  (SC sehingga)	                  (NP (NN batu) (JJ berharga))))))))))	  (VP	    (VB terendam)	    (NP *-5)	    (PP (IN di) (NP (NN dalam) (NN air)))	    (SBAR (SC untuk) (NP (CD beberapa) (NN bulan))))	  (Z .)) (p=7.8889e-170)(S	  (NP-SBJ (CD Sejumlah) (NN surat) (NN kabar) (NNP Brasil))	  (VP	    (VB melaporkan)	    (SBAR	      0	      (S	        (NP-SBJ	          (NNP Tiririca)	          (Z -)	          (SBAR	            (ADJP (JJ sama))	            (SC seperti)	            (NP	              (QP (CD satu) (IN dari) (CD sepuluh))	              (NN warga)	              (NNP Brasil))))	        (VP (JJ buta) (NP (NN aksara)))	        (Z .))))) (p=1.37761e-72)(S (NP-SBJ (NN Calon)) (NP-PRD (NN selebriti))) (p=1.59782e-11)(S	  (NP (DT Para) (NN pengamat))	  (VP	    (VB mengatakan)	    (SBAR	      0	      (S	        (NP-SBJ	          (NN popularitas)	          (NP (DT para) (NN selebriti)))	        (VP	          (VB mencerminkan)	          (NP	            (NN kebingungan)	            (PP (IN dengan) (NP (NN politik) (JJ utama))))	          (PP	            (IN karena)	            (NP	              (NN maraknya)	              (NP (CD sejumlah) (NN skandal) (NN korupsi)))))	        (Z .))))) (p=9.391e-81)(S	  (NP-SBJ	    (NP (NNP Ronzulli))	    (SBAR	      (SC yang)	      (S	        (NP-SBJ *)	        (VP	          (VB mewakili)	          (NP (NNP Partai) (NNP Kebebasan)))))	    (NP (NN Rakyat) (NN pimpinan)))	  (NP (NNP PM) (NNP Italia) (NNP Silvio) (NNP Berlusconi))	  (VP (VB mendapat) (NP (NN sambutan) (JJ meriah)))	  (SBAR	    (SC ketika)	    (S	      (NP-SBJ *)	      (VP	        (VB berdiri)	        (SBAR	          (SC untuk)	          (S	            (NP-SBJ *)	            (VP	              (VB menyampaikan)	              (NP (NN pidato) (PRP nya))))))))	  (Z .)) (p=9.20713e-100)(S	  (NP-SBJ (NN Kisah) (NN hantu) (NP (NNP Nick)) (PR itu))	  (NP-PRD	    (NN awal)	    (S-NOM	      (NP-SBJ (PRP nya))	      (VP	        (VB ditulis)	        (NP *-1)	        (PP	          (IN sebagai)	          (NP	            (NN bagian)	            (UCP	              (PP	                (IN dari)	                (NP	                  (NN buku)	                  (NP (NNP Harry) (NNP Potter))))	              (CC dan)	              (S	                (NP-SBJ-1	                  (NN Kamar)	                  (NP	                    (NP (NN Rahasia))	                    (CONJP (CC tetapi) (CC kemudian))	                    (NP (OD kedua) (NND halaman)))	                  (PR itu))	                (VP	                  (VB dibuang)	                  (NP *-2)	                  (SBAR	                    (SC sehingga)	                    (S	                      (NP-SBJ *)	                      (VP	                        (NEG tidak)	                        (VB termasuk)	                        (NP *-3)	                        (PP	                          (IN dalam)	                          (NP	                            (NN buku)	                            (SBAR	                              (SC yang)	                              (S	                                (NP-SBJ *)	                                (VP	                                  (VB diterbitkan)	                                  (NP *-4)))))))))))	              (Z .)))))))) (p=3.40221e-116)(S	  (NP-SBJ	    (NP (NN Acara) (NN TV) (NNP Australia))	    (Z ')	    (NP (NNP s) (NNP Next) (NNP Top) (NNP Model))	    (Z ,))	  (VP	    (MD sempat)	    (VP	      (VB mengumumkan)	      (NP (NN pemenang) (SBAR (SC yang) (ADJP (JJ salah))))	      (PP	        (IN dalam)	        (NP	          (NN final)	          (SBAR	            (SC yang)	            (S	              (NP-SBJ *)	              (VP	                (VB disiarkan)	                (NP *-1)	                (ADVP (RB langsung))	                (PP (IN pada) (NP (NN seri) (PRP nya))))))))	      (SBAR (SC yang) (NP (OD keenam)))))	  (Z .)) (p=2.86043e-101)(S	  (CC Adapun)	  (NP-SBJ	    (NNP Martinovich)	    (Z -)	    (SBAR	      (SC yang)	      (S	        (NP-SBJ *)	        (VP	          (MD sempat)	          (VP	            (VB disebut)	            (NP *-2)	            (PP	              (IN sebagai)	              (NP	                (NN pemenang)	                (SBAR	                  (SC selama)	                  (S	                    (PP-SBJ	                      (IN sekitar)	                      (NP (CD satu) (NND menit)))	                    (VP (VB tampak) (NP *-1)))))))))))	  (VP	    (VB menerima)	    (NP (NN kesalahan) (PR itu))	    (SBAR (SC dengan) (ADJP (JJ baik))))	  (Z .)) (p=4.22782e-76)(S	  (VP (VB Membaca))	  (NP-SBJ	    (NP (NNP Don) (NNP Quixote))	    (PP (IN untuk) (NP (NNP YouTube))))) (p=2.7576e-23)(S	  (Z ")	  (S	    (NP-SBJ (NNP Bahasa) (NNP Spanyol))	    (VP	      (NEG tidak)	      (VB mendapat)	      (NP	        (NN ruang)	        (SBAR (SC yang) (ADVP (RB sepatutnya))))	      (PP (IN di) (NP (NN internet))))	    (Z ,)	    (Z "))	  (S	    (VP (VB kata) (S *T*-1))	    (NP-SBJ	      (NP	        (NP (NN sekretaris) (NN akademi))	        (Z ,)	        (NP (NNP Dario) (NNP Villanueva))	        (Z ,))	      (PP (IN kepada) (NP (NNP kantor berita) (NNP AFP)))))	  (Z .)) (p=2.9001e-91)(S	  (NP-SBJ (NN Tim) (NN pembuat) (NN film))	  (S-PRD	    (S	      (NP-SBJ (NNP The) (NNP Hobbit))	      (VP	        (VB mencari)	        (NP (NN aktor) (JJ kerdil))	        (PP (IN di) (NP (NNP Selandia) (NNP Baru)))))	    (Z ,)	    (S	      (NP-SBJ	        (NN sementara)	        (NN sutradara)	        (NP (NNP Peter) (NNP Jackson)))	      (VP	        (VB berancang-ancang)	        (SBAR	          (SC untuk)	          (S	            (NP-SBJ *)	            (VP	              (VB merealisasikan)	              (NP (NN rencana) (NN film) (PR tersebut))))))))	  (Z .)) (p=2.08852e-82)(S	  (Z ")	  (S-NOM-SBJ	    (NP-SBJ (NP (FW Scale) (FW double)))	    (VP	      (VP	        (VB muncul)	        (PP (IN di) (NP (CD beberapa)))	        (NP (FW wide) (FW shot))	        (PP	          (IN sebagai)	          (NP (NN pengganti) (NN aktor) (PRP kami))))	      (Z ,)	      (CC dan)	      (VP	        (VB muncul)	        (PP	          (IN dengan)	          (NP	            (NP (NN aktor) (JJ dewasa))	            (ADJP (JJ lain))	            (SBAR	              (SC ketika)	              (S	                (NP-SBJ (PRP kami))	                (VP	                  (VB memerlukan)	                  (NP	                    (NN orang)	                    (SBAR	                      (SC untuk)	                      (S	                        (NP-SBJ *)	                        (UCP-PRD	                          (VP	                            (VB terlihat)	                            (ADJP (RB lebih) (JJ kecil)))	                          (CC atau)	                          (ADJP (RB lebih) (JJ tinggi)))	                        (Z ,)))))	                (Z "))))))))	  (VP	    (VB jelas)	    (NP *T*-1)	    (NP (DT si) (NP (NNP juru bicara))))	  (Z .)) (p=4.87265e-125)(S	  (NP-SBJ (PRP Mereka))	  (VP	    (VB melakukan)	    (S	      (NP-SBJ (NN aksi))	      (PP	        (IN di)	        (NP	          (NP	            (NNP Villeneuve)	            (NNP -)	            (NNP les-Beziers)	            (NNP Minggu))	          (NN malam)))	      (Z &brl;)	      (NP (CD 26) (Z /) (CD 9))	      (Z &brr;)	      (VP	        (VB memanfaatkan)	        (ADJP	          (JJ terang)	          (NP	            (NN bulan)	            (SBAR	              (SC untuk)	              (S	                (NP-SBJ *)	                (VP	                  (VB mencuri)	                  (PP	                    (IN hingga)	                    (NP (QP (CD 30) (NND ton)) (NN anggur))))))))	        (SBAR	          (SC dengan)	          (S	            (NP-SBJ *)	            (VP (VB menggunakan) (NP (NN mesin))))))	      (Z .)))) (p=1.32618e-102)(S	  (NP-SBJ (NNP Cavaille))	  (VP	    (VB menambahkan)	    (SBAR	      (SC bahwa)	      (S	        (NP-SBJ (NN kawanan) (NN pencuri) (JJ jelas))	        (UCP-PRD	          (ADJP (RB sangat) (JJ profesional))	          (CC dan)	          (VP	            (NEG tak)	            (MD akan)	            (VP	              (VB kesulitan)	              (SBAR	                0	                (S	                  (NP-SBJ *)	                  (VP	                    (VB menjual)	                    (NP (NN anggur) (NN curian) (PR itu))))))))	        (Z .))))) (p=1.82126e-59)(S	  (NP-SBJ (NN Pihak) (NN panitia))	  (VP	    (VB mengatakan)	    (SBAR	      0	      (S	        (SBAR	          (SC bila)	          (S	            (NP-SBJ (NNP Pimentel))	            (VP	              (VB makan)	              (NP (CD 100) (NN pangsit))	              (NP (CD setiap) (NN hari)))))	        (Z ,)	        (NP-SBJ	          (NN pasokan)	          (SBAR	            (SC yang)	            (S (NP-SBJ (PRP ia)) (VP (VB miliki)))))	        (VP	          (MD baru)	          (VP	            (MD akan)	            (VP	              (VB habis)	              (PP	                (IN dalam)	                (NP (NN waktu) (NP (CD 27) (NN tahun)))))))	        (Z .))))) (p=1.09057e-93)(S	  (SBAR	    (SC Ketika)	    (S	      (NP-SBJ (NNP Wayne) (NNP Rooney))	      (VP	        (VB tertangkap)	        (VP	          (VB basah)	          (SBAR	            0	            (S	              (NP-SBJ *)	              (VP	                (VB merokok)	                (PP	                  (IN di)	                  (NP (CD beberapa) (NN kesempatan)))))))	        (NP	          (NN saat)	          (NN jeda)	          (VP	            (VB libur)	            (PP	              (IN antara)	              (NP	                (NP	                  (NN akhir)	                  (NP (NNP Piala) (NNP Dunia)))	                (CC dan)	                (NP	                  (NN dimulainya)	                  (NN musim)	                  (NN kompetisi)))))	          (NP (NNP Liga) (NNP Primer))))))	  (Z ,)	  (NP-SBJ (PRP ia))	  (VP (VB dikecam) (VB habis))	  (Z .)) (p=3.13944e-124)(S (NP-SBJ (NN Bintang)) (NP-PRD (NN idola))) (p=6.15961e-14)(S	  (Z ")	  (S-NOM-SBJ	    (NP-SBJ (PRP Kita))	    (VP	      (VB tahu)	      (SBAR	        0	        (S	          (NP-SBJ (NN anak-anak) (PR itu))	          (VP	            (VB terpengaruh)	            (PP (IN oleh) (NP (NN orang))))))	      (PP (IN di) (NP (NN sekeliling) (PRP mereka)))	      (Z .)	      (NP (NN Penelitian))))	  (VP	    (VB membuktikan)	    (SBAR	      0	      (S	        (NP-SBJ	          (PRP mereka)	          (SBAR	            (SC yang)	            (S	              (NP-SBJ *)	              (VP	                (VB tumbuh)	                (PP	                  (IN dengan)	                  (NP (NN orang) (NN tua) (NN perokok)))	                (Z ,)	                (NP (CD 90) (SYM %))))))	        (VP (VB menjadi) (NP (NN perokok))))))	  (Z .)	  (Z ")) (p=1.3692e-91)(S	  (Z ")	  (S	    (NP-SBJ	      (DT Yang)	      (VP	        (VB bertanggung jawab)	        (PP (IN atas) (NP (CD banyak) (PRP nya)))))	    (NP-PRD	      (NN remaja)	      (SBAR	        (SC yang)	        (S	          (NP-SBJ *)	          (VP	            (VB merokok)	            (VP (VB adalah) (NP (PRP mereka))))))	      (SBAR	        (SC yang)	        (S	          (NP-SBJ *)	          (VP	            (VB memberi)	            (NP	              (NN akses)	              (PP (IN ke) (NP (NN rokok) (PR itu))))	            (ADJP (JJ sendiri)))	          (Z .)))))	  (S	    (NP-SBJ (PR Itu) (RP lah))	    (SBAR-PRD	      (SC yang)	      (S (NP-SBJ *) (VP (MD harus) (VP (VB dikejar))))))	  (Z .)	  (Z ")) (p=7.83747e-81)(S	  (NP-SBJ (NNP Pemerintah))	  (ADVP (RB juga))	  (VP	    (MD telah)	    (VP	      (VB berkomitmen)	      (SBAR	        (SC untuk)	        (S	          (NP-SBJ *)	          (VP	            (VB meningkatkan)	            (NP (NN produksi) (NN padi) (JJ nasional))	            (PP	              (IN melalui)	              (NP	                (NP (NN program-program) (JJ khusus))	                (CC dan)	                (NP	                  (NN pendanaan)	                  (SBAR	                    (SC sehingga)	                    (S	                      (NP-SBJ (NN harga) (NN beras))	                      (VP (MD dapat) (VP (VB terkendali)))))))))))))	  (Z .)) (p=1.30549e-80)(S	  (NP-SBJ (PRP Saya))	  (VP	    (VB kira)	    (ADJP (RB lebih) (JJ tinggi))	    (PP (IN dari) (NP (NN target) (NN tahun) (PR ini))))	  (Z .)) (p=8.5859e-25)(S	  (NP-SBJ (PR Ini))	  (VP	    (VB menunjukkan)	    (SBAR	      0	      (S (NP-SBJ (NN sistem)) (VP (VB berjalan)) (Z .))))) (p=9.80073e-19)(S	  (PP (IN Dalam) (NP (NN pertemuan) (PR itu)))	  (Z ,)	  (NP-SBJ (NN Dubes))	  (VP	    (VB melihat)	    (NP (CD banyak) (NN hal))	    (SBAR	      (SC yang)	      (S	        (NP-SBJ *)	        (VP	          (MD bisa)	          (VP	            (VB dilakukan)	            (PP (IN oleh) (NP (NNP ICMI) (NNP London)))	            (PP	              (IN dalam)	              (VP	                (VB mengisi)	                (NP	                  (NN peluang)	                  (SBAR	                    (SC yang)	                    (S	                      (NP-SBJ *)	                      (VP	                        (VB ada)	                        (PP	                          (IN dalam)	                          (NP	                            (NN upaya)	                            (VP	                              (VB membantu)	                              (NP	                                (NN pengusaha)	                                (NNP Indonesia)))))))))))	            (SBAR	              (SC yang)	              (S	                (NP-SBJ *)	                (VP	                  (MD akan)	                  (VP	                    (VB mengembangkan)	                    (NP (NN sayap) (PRP nya))	                    (PP (IN di) (NP (NNP Inggris))))))))))))	  (Z .)) (p=2.53906e-86)(S	  (PP	    (IN Menurut)	    (NP	      (NNP UK)	      (NNP Trade)	      (NNP and)	      (NNP Investment)	      (NNP UKTI)))	  (Z ,)	  (NP-SBJ	    (NP (NN nilai) (NN ekspor) (NNP Indonesia))	    (PP (IN ke) (NP (NNP Inggris)))	    (NP (NN sepanjang) (NN tahun) (CD 2005)))	  (VP	    (VB tercatat)	    (NP	      (NN senilai)	      (NP	        (NP (CD 517) (CD juta))	        (NP (NNP Pound) (NNP Sterling)))	      (Z ,)	      (SBAR	        (SC yang)	        (NP	          (NP	            (NN kebanyakan)	            (NP-TTL	              (VB didominasi)	              (NN jenis)	              (NN barang-barang)	              (NN tekstil)))	          (CC dan)	          (NP (NN alas) (NN kaki))))))	  (Z .)) (p=6.41944e-141)(S	  (S	    (NP-SBJ (NP (NN Saat) (PR ini)) (PRP kami))	    (VP	      (MD baru)	      (ADJP	        (ADJP (JJ mampu))	        (VP	          (VB memenuhi)	          (NP (CD dua) (NN pesawat))	          (NP (NNP ATR) (NNP 42))))))	  (Z -)	  (NP	    (NP (CD 300) (NN pesanan))	    (NP (NN perusahaan) (FW travel)))	  (NP (NNP PT) (NNP Mirantha) (NNP Nuansa) (NNP Ayu))	  (Z .)) (p=3.66284e-79)(S	  (NP-SBJ	    (NP (CD Salah satu) (PRP nya))	    (SBAR	      (SC dengan)	      (S	        (NP-SBJ *)	        (VP	          (VB menyediakan)	          (NP (NN alat) (NN transportasi) (NN udara))	          (PP	            (IN melalui)	            (NP	              (NN kerja sama)	              (PP (IN dengan) (NP (NNP IATA))))))	        (Z ,))))	  (VP (VB lanjut) (S *T*-1) (NP-LGS (NNP Henry)))	  (Z .)) (p=6.94833e-54)(S	  (CC Sedangkan)	  (NP-SBJ	    (NN target)	    (UCP	      (NP	        (NP (NN laba bersih) (CD 2007))	        (NP	          (QP (JJ sebesar) (SYM Rp) (CD 30) (CD miliar))	          *U*))	      (CC atau)	      (VP (VB naik))))	  (VP	    (VB dibandingkan)	    (NP	      (CD 2006)	      (NP	        (QP (JJ sebesar) (SYM Rp) (CD 28,6) (CD miliar))	        *U*)))	  (Z .)) (p=4.30041e-50)(S	  (S	    (NP-SBJ-1	      (NN Periode)	      (NP (NN penawaran) (NN obligasi))	      (PR tersebut))	    (VP	      (VB berlangsung)	      (PP	        (IN pada)	        (NP	          (NP (CD 24) (Z -) (CD 26))	          (NP (NNP April) (NNP 2007))))))	  (CC dan)	  (S	    (NP-SBJ *)	    (VP	      (MD akan)	      (VP	        (VB dicatatkan)	        (PP	          (IN di)	          (NP	            (NNP Bursa)	            (NNP Efek)	            (NNP Surabaya)	            (NNP BES)))	        (PP (IN pada) (NP (NNP 1) (NNP Mei) (CD 2007))))))	  (Z .)) (p=2.31039e-85)(S	  (NP-SBJ	    (NN Jumlah)	    (SBAR	      (SC yang)	      (ADJP	        (JJ sama)	        (NP	          (JJ sebesar)	          (QP (CD 0,11))	          (NN dolar)	          (NNP AS))	        (PP (IN per) (NP (NND lembar) (NN saham))))))	  (VP	    (MD telah)	    (VP	      (VB dibayarkan)	      (PP (IN untuk) (NP (NN tahun) (CD 2005)))	      (Z ,)	      (S (VP (VB kata) (S *T*-1)) (NP-SBJ (PRP dia)))))	  (Z .)) (p=1.55944e-57)(S	  (NP-SBJ (NNP Bank) (NNP Central) (NNP Asia) (NNP BCA))	  (VP	    (VB menargetkan)	    (SBAR	      0	      (S	        (NP-SBJ *)	        (VP	          (MD dapat)	          (VP	            (VB menyalurkan)	            (NP	              (NN kredit)	              (NP	                (QP	                  (JJ sebesar)	                  (SYM Rp)	                  (CD 10)	                  (CD triliun))	                *U*))	            (PP (IN pada) (NP (NN tahun) (CD 2007))))))))	  (Z .)) (p=3.93159e-45)(S	  (PP	    (IN Pada)	    (NP	      (NP (CD 31) (NP (NNP Desember) (CD 2006)))	      (Z ,)	      (NP (NN porsi) (NN kredit) (JJ Komersial))	      (CC dan)	      (NP	        (NN UKM)	        (VP	          (VB mencapai)	          (NP (CD 47,4) (CD persen))	          (PP (IN dari) (NP (NN total) (NN kredit)))))))	  (Z ,)	  (NP-SBJ (NN sementara) (NN kredit))	  (NP-TMP (NN Korporasi))	  (VP	    (VB berkontribusi)	    (NP	      (NP (CD 38,8) (CD persen))	      (CC dan)	      (NP (NN kredit) (NN Konsumer)))	    (NP (CD 13,8) (CD persen)))	  (Z .)) (p=8.45624e-96)(S	  (NP-SBJ (NNP Singapura) (NP (NN sendiri)))	  (VP	    (VB berhasil)	    (VP	      (VB mendatangkan)	      (NP (NN PMA) (NN tahun) (CD 2006))	      (NP (JJ sebesar) (CD 30) (CD miliar)))	    (NP	      (QP	        (NN ringgit)	        (CD 8,3)	        (CD miliar)	        (NN dolar)	        (NNP AS))))	  (Z .)) (p=1.89745e-49)(S	  (NP-SBJ	    (NP	      (NP (NN Penurunan) (NN produksi) (PR ini))	      (PP	        (IN akibat)	        (NP (NN dampak) (NN musim) (NN kering))))	    (SBAR	      (SC yang)	      (S	        (S	          (NP-SBJ *)	          (VP	            (VB terjadi)	            (PP	              (IN pada)	              (NP (NN semester) (NP (NNP II) (CD 2006))))))	        (Z ,)	        (CC dan)	        (S	          (NP-SBJ (NN dampak) (PRP nya))	          (VP	            (MD masih)	            (VP	              (VB dirasakan)	              (PP	                (IN pada)	                (NP (NN kuartal) (OD pertama) (CD 2007))))))	        (Z ,))))	  (VP	    (VB kata)	    (S *T*-1)	    (NP-LGS	      (NP (NNP Direktur) (NNP AALI))	      (Z ,)	      (NP	        (NP (NNP Julie) (NNP Syaftari))	        (PP (IN kepada) (NP (NNP BEJ) (Z ,) (NNP Kamis))))	      (Z .)))) (p=6.45171e-111)(S	  (S	    (NP-SBJ (NN Makro) (NN ekonomi))	    (VP (VB membaik))	    (Z ,))	  (CC sedangkan)	  (S	    (NP-SBJ	      (NN inflasi)	      (S	        (CC dan)	        (NP-SBJ (NN nilai) (NN tukar))	        (NP-PRD (RB terus) (JJ stabil))	        (Z ,)))	    (VP	      (VB kata)	      (S *T*-1)	      (NP-LGS	        (NP (NN Kepala) (NN Eksekutif) (NNP LPS))	        (Z ,)	        (NP	          (NP (NNP Krisna) (NNP Wijaya))	          (PP (IN di) (NP (NNP Jakarta) (Z ,) (NNP Kamis))))	        (Z .))))) (p=4.0282e-90)(S	  (SBAR	    (SC Sementara)	    (S	      (NP-SBJ (NP (PR itu)) (Z ,) (NP (NN pendapatan)))	      (NP-PRD (NEG bukan) (NN bunga))))	  (SBAR (SC yang) (ADJP (RB lebih) (JJ tinggi)))	  (VP	    (VB berasal)	    (PP	      (IN dari)	      (NP (NN penjualan) (NN obligasi) (NN pemerintah)))	    (PP (IN di) (NP (CD 2006))))	  (Z .)) (p=1.50381e-49)(S	  (CC Sedangkan)	  (S	    (NP-SBJ (NN sisa) (PRP nya))	    (VP	      (ADJP (JJ sebesar) (NP (CD 17) (CD persen)))	      (VB digolongkan)	      (PP	        (IN sebagai)	        (NP	          (NN kredit)	          (VP (VB bermasalah) (ADJP (JJ komersial)))))))	  (CC dan)	  (S	    (NP	      (NP	        (NP	          (NP	            (NN konsumsi)	            (Z ,)	            (SBAR	              (SC yang)	              (S	                (S	                  (SC walaupun)	                  (NP-SBJ *)	                  (VP	                    (VB meningkat)	                    (PP (IN di) (NP (CD 2006)))))	                (CC tetapi)	                (S (NP-SBJ *) (PP (IN dari))))))	          (NND basis))	        (SBAR (SC yang) (ADJP (JJ rendah))))	      (Z ,)	      (SBAR	        (SC dengan)	        (S	          (NP-SBJ (NN rasio) (NN kredit))	          (VP	            (VB bermasalah)	            (PP (IN dari) (NP (OD kedua)))))))	    (NP-SBJ-1 (NN segmen) (PR tersebut))	    (VP	      (VB meningkat)	      (VP	        (VB menjadi)	        (NP (CD 2,1) (CD persen))	        (PP (IN di) (NP (NN akhir) (NN tahun) (CD 2006))))	      (PP	        (IN dari)	        (NP	          (NP (CD 1,7) (CD persen))	          (PP (IN di) (NP (NN akhir) (CD 2005))))))	    (Z .))) (p=2.48969e-141)
+(S
+  (NP-SBJ (NN Kera))
+  (SBAR-PRD
+    (SC untuk)
+    (S
+      (NP-SBJ *)
+      (VP (VB amankan) (NP (NN pesta) (NN olahraga)))))) (p=4.33627e-29)
+(S
+  (S
+    (NP-SBJ (NN Monyet) (PR ini))
+    (VP
+      (VB diikat)
+      (NP *-1)
+      (PP (IN dengan) (NP (NN tali) (JJ panjang)))))
+  (CC dan)
+  (S
+    (NP-SBJ
+      (NP
+        (NN pelatih)
+        (SBAR
+          (SC yang)
+          (S
+            (NP-SBJ *)
+            (VP
+              (VB mengawasi)
+              (S
+                (NP-SBJ (PRP mereka))
+                (VP
+                  (MD akan)
+                  (VP
+                    (VB melepas)
+                    (NP (NN tali))
+                    (ADVP (RB begitu)))))))))
+      (NP (NN monyet-monyet) (JJ kecil)))
+    (VP (ADJP (JJ lain)) (VB mendekat)))
+  (Z .)) (p=9.05711e-86)
+(S
+  (NP-SBJ
+    (ADJP
+      (ADJP (NEG Belum) (JJ lama))
+      (VP
+        (NP (NP (PR ini)) (NP (NN kawanan) (NN monyet)))
+        (VP (VB menyerbu))))
+    (NN kantor))
+  (NP (NN perdana) (NN menteri))
+  (S
+    (CC dan)
+    (NP-SBJ (NN departemen))
+    (NP-PRD (NN pertahanan))
+    (Z .))) (p=7.01381e-77)
+(S
+  (NP-SBJ
+    (NP (CD Dua) (NN miliarder))
+    (NP
+      (NP (NNP Amerika) (NNP Bill) (NNP Gates))
+      (CC dan)
+      (NP (NNP Warren) (NNP Buffett))))
+  (VP
+    (MD akan)
+    (VP
+      (VB mengadakan)
+      (NP (NN jamuan) (NN makan malam))
+      (PP
+        (IN di)
+        (NP
+          (NNP Beijing)
+          (PP
+            (IN bagi)
+            (NP (CD sejumlah) (NN orang) (JJ terkaya)))
+          (PP (IN di) (NP (NNP Cina)))))))
+  (Z .)) (p=1.00241e-72)
+(S
+  (NP-SBJ (PRP Dia))
+  (VP
+    (VB mengatakan)
+    (PP (IN kepada) (NP (NNP BBC)))
+    (SBAR
+      (SC bahwa)
+      (S
+        (NP-SBJ (PRP dia))
+        (VP
+          (MD sudah)
+          (VP
+            (VB berencana)
+            (S
+              (NP-SBJ *-1)
+              (VP
+                (VB menyumbangkan)
+                (NP (CD seluruh) (NN harta) (PRP nya))))))))
+    (PP
+      (IN untuk)
+      (NP
+        (NN amal)
+        (SBAR
+          (SC bila)
+          (S (NP-SBJ (PRP dia)) (VP (VB meninggal)) (Z .))))))) (p=2.44925e-63)
+(S
+  (NP-SBJ (NP (NN Kisah) (NN pendiri)) (NNP Facebook))
+  (VP (VB dibuat) (NP (NP *-1) (NN komik)))) (p=8.45909e-27)
+(S
+  (NP-SBJ
+    (NN Pemuda)
+    (SBAR
+      0
+      (S
+        (NP-SBJ *)
+        (VP
+          (VB berusia)
+          (S
+            (NP-SBJ-1 (CD 26) (NN tahun) (PR ini))
+            (VP
+              (VB mengatakan)
+              (S
+                (Z ")
+                (S-NOM-SBJ
+                  (NP-SBJ (PRP Saya))
+                  (VP (VB mengharapkan)))
+                (VP
+                  (NEG tidak)
+                  (VB ada)
+                  (NP
+                    (NN orang)
+                    (SBAR
+                      (SC yang)
+                      (S
+                        (NP-SBJ *)
+                        (VP
+                          (VB membuat)
+                          (NP (NN film))
+                          (PP (IN tentang) (NP (PRP saya)))))))
+                  (SBAR
+                    (SC ketika)
+                    (S
+                      (NP-SBJ (PRP saya))
+                      (VP (MD masih) (VP (VB hidup))))))
+                (Z ,)
+                (Z "))))))))
+  (VP
+    (VB kata)
+    (NP (PRP nya))
+    (PP
+      (IN dalam)
+      (NP
+        (NP (NND sebuah) (NN konferensi))
+        (NP (NN teknologi) (NNP Juni))
+        (NN silam))))
+  (Z .)) (p=8.57765e-108)
+(S
+  (NP-SBJ (PRP Mereka))
+  (VP
+    (VB terlibat)
+    (NP *-1)
+    (PP (IN dalam) (NP (NN sengketa) (NN hukum)))
+    (SBAR
+      (SC yang)
+      (S
+        (NP-SBJ *)
+        (VP
+          (VP
+            (VB berlarut-larut)
+            (PP (IN pada) (NP (NN tahun) (CD 2008))))
+          (CC dan)
+          (VP
+            (VB diakhiri)
+            (NP *-2)
+            (SBAR
+              (SC dengan)
+              (S
+                (NP-SBJ
+                  (NN pembayaran)
+                  (SBAR (SC yang) (NP *-3)))
+                (VP
+                  (VB dirahasiakan)
+                  (NP (NN jumlah) (PRP nya))
+                  (PP
+                    (IN kepada)
+                    (NP
+                      (NP (NNP Cameron))
+                      (CC dan)
+                      (NP (NNP Tyler) (NNP Winklevoss)))))))))))
+    (Z ,)
+    (SBAR
+      (SC yang)
+      (NP
+        (NN kini)
+        (S-NOM
+          (NP-SBJ *)
+          (VP
+            (RB juga)
+            (VB membuat)
+            (NP (NN situs) (NN jejaring) (JJ sosial))
+            (SBAR
+              0
+              (S
+                (NP-SBJ *)
+                (VP (VB bernama) (NP (NNP ConnectU)))
+                (Z .))))))))) (p=2.48728e-150)
+(S
+  (NP-SBJ
+    (NP (CD Salah satu))
+    (PP
+      (IN dari)
+      (NP
+        (NN pihak)
+        (SBAR
+          (SC yang)
+          (S (NP-SBJ *) (VP (VB berselisih)) (Z ,))))))
+  (VP
+    (VB adalah)
+    (NP
+      (NP (NNP Anthony) (NNP Thomas))
+      (NP (NN ahli) (NN konstruksi)))
+    (PP (IN dari) (NP (NNP Kalifornia)))
+    (SBAR
+      (SC yang)
+      (S
+        (NP-SBJ *)
+        (VP
+          (VB mengatakan)
+          (SBAR
+            0
+            (S
+              (NP-SBJ (PRP dia))
+              (VP
+                (MD telah)
+                (VP
+                  (VB membayar)
+                  (PP
+                    (IN kepada)
+                    (NP
+                      (CD dua)
+                      (NP
+                        (NP
+                          (NN orang)
+                          (NN agen)
+                          (NN permata)
+                          (NNP Brasil))
+                        (NP (NN senilai) (NNP US))
+                        (NP (QP (SYM $) (CD 60.000)) *U*))
+                      (SBAR
+                        (SC untuk)
+                        (S
+                          (NP-SBJ
+                            (NN jamrud)
+                            (PR tersebut))
+                          (ADJP-PRD
+                            (NEG tak)
+                            (JJ lama)
+                            (SBAR
+                              (SC setelah)
+                              (S
+                                (NP-SBJ *)
+                                (VP
+                                  (VB ditemukan)
+                                  (NP-2 *-1)
+                                  (S
+                                    (NP-SBJ
+                                      (CD sembilan)
+                                      (NN tahun))
+                                    (VP (VB lalu)))))))
+                          (Z .)))))))))))))) (p=7.51689e-158)
+(S
+  (NP-SBJ
+    (NP (CD Satu) (NN hal))
+    (SBAR
+      (SC yang)
+      (S
+        (NP-SBJ *)
+        (VP
+          (VB diketahui)
+          (NP-2 *-1)
+          (S
+            (NP-SBJ (NN batu) (PR itu))
+            (VP
+              (MD sempat)
+              (VP
+                (VB disimpan)
+                (NP *-2)
+                (PP
+                  (IN di)
+                  (NP (NN lemari) (NN besi) (NN bank)))
+                (PP
+                  (IN di)
+                  (NP
+                    (NP (NNP New) (NNP Orleans))
+                    (SBAR
+                      (SC yang)
+                      (S
+                        (NP-SBJ *)
+                        (VP (VB terkena) (NP *-3))))))
+                (NP
+                  (NN banjir)
+                  (SBAR
+                    (SC ketika)
+                    (S
+                      (NP-SBJ (NN daerah) (PR itu))
+                      (VP
+                        (VB diterjang)
+                        (NP *-4)
+                        (NP (NNP Badai) (NNP Katrina)))
+                      (Z ,))))
+                (SBAR
+                  (SC sehingga)
+                  (NP (NN batu) (JJ berharga))))))))))
+  (VP
+    (VB terendam)
+    (NP *-5)
+    (PP (IN di) (NP (NN dalam) (NN air)))
+    (SBAR (SC untuk) (NP (CD beberapa) (NN bulan))))
+  (Z .)) (p=7.8889e-170)
+(S
+  (NP-SBJ (CD Sejumlah) (NN surat) (NN kabar) (NNP Brasil))
+  (VP
+    (VB melaporkan)
+    (SBAR
+      0
+      (S
+        (NP-SBJ
+          (NNP Tiririca)
+          (Z -)
+          (SBAR
+            (ADJP (JJ sama))
+            (SC seperti)
+            (NP
+              (QP (CD satu) (IN dari) (CD sepuluh))
+              (NN warga)
+              (NNP Brasil))))
+        (VP (JJ buta) (NP (NN aksara)))
+        (Z .))))) (p=1.37761e-72)
+(S (NP-SBJ (NN Calon)) (NP-PRD (NN selebriti))) (p=1.59782e-11)
+(S
+  (NP (DT Para) (NN pengamat))
+  (VP
+    (VB mengatakan)
+    (SBAR
+      0
+      (S
+        (NP-SBJ
+          (NN popularitas)
+          (NP (DT para) (NN selebriti)))
+        (VP
+          (VB mencerminkan)
+          (NP
+            (NN kebingungan)
+            (PP (IN dengan) (NP (NN politik) (JJ utama))))
+          (PP
+            (IN karena)
+            (NP
+              (NN maraknya)
+              (NP (CD sejumlah) (NN skandal) (NN korupsi)))))
+        (Z .))))) (p=9.391e-81)
+(S
+  (NP-SBJ
+    (NP (NNP Ronzulli))
+    (SBAR
+      (SC yang)
+      (S
+        (NP-SBJ *)
+        (VP
+          (VB mewakili)
+          (NP (NNP Partai) (NNP Kebebasan)))))
+    (NP (NN Rakyat) (NN pimpinan)))
+  (NP (NNP PM) (NNP Italia) (NNP Silvio) (NNP Berlusconi))
+  (VP (VB mendapat) (NP (NN sambutan) (JJ meriah)))
+  (SBAR
+    (SC ketika)
+    (S
+      (NP-SBJ *)
+      (VP
+        (VB berdiri)
+        (SBAR
+          (SC untuk)
+          (S
+            (NP-SBJ *)
+            (VP
+              (VB menyampaikan)
+              (NP (NN pidato) (PRP nya))))))))
+  (Z .)) (p=9.20713e-100)
+(S
+  (NP-SBJ (NN Kisah) (NN hantu) (NP (NNP Nick)) (PR itu))
+  (NP-PRD
+    (NN awal)
+    (S-NOM
+      (NP-SBJ (PRP nya))
+      (VP
+        (VB ditulis)
+        (NP *-1)
+        (PP
+          (IN sebagai)
+          (NP
+            (NN bagian)
+            (UCP
+              (PP
+                (IN dari)
+                (NP
+                  (NN buku)
+                  (NP (NNP Harry) (NNP Potter))))
+              (CC dan)
+              (S
+                (NP-SBJ-1
+                  (NN Kamar)
+                  (NP
+                    (NP (NN Rahasia))
+                    (CONJP (CC tetapi) (CC kemudian))
+                    (NP (OD kedua) (NND halaman)))
+                  (PR itu))
+                (VP
+                  (VB dibuang)
+                  (NP *-2)
+                  (SBAR
+                    (SC sehingga)
+                    (S
+                      (NP-SBJ *)
+                      (VP
+                        (NEG tidak)
+                        (VB termasuk)
+                        (NP *-3)
+                        (PP
+                          (IN dalam)
+                          (NP
+                            (NN buku)
+                            (SBAR
+                              (SC yang)
+                              (S
+                                (NP-SBJ *)
+                                (VP
+                                  (VB diterbitkan)
+                                  (NP *-4)))))))))))
+              (Z .)))))))) (p=3.40221e-116)
+(S
+  (NP-SBJ
+    (NP (NN Acara) (NN TV) (NNP Australia))
+    (Z ')
+    (NP (NNP s) (NNP Next) (NNP Top) (NNP Model))
+    (Z ,))
+  (VP
+    (MD sempat)
+    (VP
+      (VB mengumumkan)
+      (NP (NN pemenang) (SBAR (SC yang) (ADJP (JJ salah))))
+      (PP
+        (IN dalam)
+        (NP
+          (NN final)
+          (SBAR
+            (SC yang)
+            (S
+              (NP-SBJ *)
+              (VP
+                (VB disiarkan)
+                (NP *-1)
+                (ADVP (RB langsung))
+                (PP (IN pada) (NP (NN seri) (PRP nya))))))))
+      (SBAR (SC yang) (NP (OD keenam)))))
+  (Z .)) (p=2.86043e-101)
+(S
+  (CC Adapun)
+  (NP-SBJ
+    (NNP Martinovich)
+    (Z -)
+    (SBAR
+      (SC yang)
+      (S
+        (NP-SBJ *)
+        (VP
+          (MD sempat)
+          (VP
+            (VB disebut)
+            (NP *-2)
+            (PP
+              (IN sebagai)
+              (NP
+                (NN pemenang)
+                (SBAR
+                  (SC selama)
+                  (S
+                    (PP-SBJ
+                      (IN sekitar)
+                      (NP (CD satu) (NND menit)))
+                    (VP (VB tampak) (NP *-1)))))))))))
+  (VP
+    (VB menerima)
+    (NP (NN kesalahan) (PR itu))
+    (SBAR (SC dengan) (ADJP (JJ baik))))
+  (Z .)) (p=4.22782e-76)
+(S
+  (VP (VB Membaca))
+  (NP-SBJ
+    (NP (NNP Don) (NNP Quixote))
+    (PP (IN untuk) (NP (NNP YouTube))))) (p=2.7576e-23)
+(S
+  (Z ")
+  (S
+    (NP-SBJ (NNP Bahasa) (NNP Spanyol))
+    (VP
+      (NEG tidak)
+      (VB mendapat)
+      (NP
+        (NN ruang)
+        (SBAR (SC yang) (ADVP (RB sepatutnya))))
+      (PP (IN di) (NP (NN internet))))
+    (Z ,)
+    (Z "))
+  (S
+    (VP (VB kata) (S *T*-1))
+    (NP-SBJ
+      (NP
+        (NP (NN sekretaris) (NN akademi))
+        (Z ,)
+        (NP (NNP Dario) (NNP Villanueva))
+        (Z ,))
+      (PP (IN kepada) (NP (NNP kantor berita) (NNP AFP)))))
+  (Z .)) (p=2.9001e-91)
+(S
+  (NP-SBJ (NN Tim) (NN pembuat) (NN film))
+  (S-PRD
+    (S
+      (NP-SBJ (NNP The) (NNP Hobbit))
+      (VP
+        (VB mencari)
+        (NP (NN aktor) (JJ kerdil))
+        (PP (IN di) (NP (NNP Selandia) (NNP Baru)))))
+    (Z ,)
+    (S
+      (NP-SBJ
+        (NN sementara)
+        (NN sutradara)
+        (NP (NNP Peter) (NNP Jackson)))
+      (VP
+        (VB berancang-ancang)
+        (SBAR
+          (SC untuk)
+          (S
+            (NP-SBJ *)
+            (VP
+              (VB merealisasikan)
+              (NP (NN rencana) (NN film) (PR tersebut))))))))
+  (Z .)) (p=2.08852e-82)
+(S
+  (Z ")
+  (S-NOM-SBJ
+    (NP-SBJ (NP (FW Scale) (FW double)))
+    (VP
+      (VP
+        (VB muncul)
+        (PP (IN di) (NP (CD beberapa)))
+        (NP (FW wide) (FW shot))
+        (PP
+          (IN sebagai)
+          (NP (NN pengganti) (NN aktor) (PRP kami))))
+      (Z ,)
+      (CC dan)
+      (VP
+        (VB muncul)
+        (PP
+          (IN dengan)
+          (NP
+            (NP (NN aktor) (JJ dewasa))
+            (ADJP (JJ lain))
+            (SBAR
+              (SC ketika)
+              (S
+                (NP-SBJ (PRP kami))
+                (VP
+                  (VB memerlukan)
+                  (NP
+                    (NN orang)
+                    (SBAR
+                      (SC untuk)
+                      (S
+                        (NP-SBJ *)
+                        (UCP-PRD
+                          (VP
+                            (VB terlihat)
+                            (ADJP (RB lebih) (JJ kecil)))
+                          (CC atau)
+                          (ADJP (RB lebih) (JJ tinggi)))
+                        (Z ,)))))
+                (Z "))))))))
+  (VP
+    (VB jelas)
+    (NP *T*-1)
+    (NP (DT si) (NP (NNP juru bicara))))
+  (Z .)) (p=4.87265e-125)
+(S
+  (NP-SBJ (PRP Mereka))
+  (VP
+    (VB melakukan)
+    (S
+      (NP-SBJ (NN aksi))
+      (PP
+        (IN di)
+        (NP
+          (NP
+            (NNP Villeneuve)
+            (NNP -)
+            (NNP les-Beziers)
+            (NNP Minggu))
+          (NN malam)))
+      (Z &brl;)
+      (NP (CD 26) (Z /) (CD 9))
+      (Z &brr;)
+      (VP
+        (VB memanfaatkan)
+        (ADJP
+          (JJ terang)
+          (NP
+            (NN bulan)
+            (SBAR
+              (SC untuk)
+              (S
+                (NP-SBJ *)
+                (VP
+                  (VB mencuri)
+                  (PP
+                    (IN hingga)
+                    (NP (QP (CD 30) (NND ton)) (NN anggur))))))))
+        (SBAR
+          (SC dengan)
+          (S
+            (NP-SBJ *)
+            (VP (VB menggunakan) (NP (NN mesin))))))
+      (Z .)))) (p=1.32618e-102)
+(S
+  (NP-SBJ (NNP Cavaille))
+  (VP
+    (VB menambahkan)
+    (SBAR
+      (SC bahwa)
+      (S
+        (NP-SBJ (NN kawanan) (NN pencuri) (JJ jelas))
+        (UCP-PRD
+          (ADJP (RB sangat) (JJ profesional))
+          (CC dan)
+          (VP
+            (NEG tak)
+            (MD akan)
+            (VP
+              (VB kesulitan)
+              (SBAR
+                0
+                (S
+                  (NP-SBJ *)
+                  (VP
+                    (VB menjual)
+                    (NP (NN anggur) (NN curian) (PR itu))))))))
+        (Z .))))) (p=1.82126e-59)
+(S
+  (NP-SBJ (NN Pihak) (NN panitia))
+  (VP
+    (VB mengatakan)
+    (SBAR
+      0
+      (S
+        (SBAR
+          (SC bila)
+          (S
+            (NP-SBJ (NNP Pimentel))
+            (VP
+              (VB makan)
+              (NP (CD 100) (NN pangsit))
+              (NP (CD setiap) (NN hari)))))
+        (Z ,)
+        (NP-SBJ
+          (NN pasokan)
+          (SBAR
+            (SC yang)
+            (S (NP-SBJ (PRP ia)) (VP (VB miliki)))))
+        (VP
+          (MD baru)
+          (VP
+            (MD akan)
+            (VP
+              (VB habis)
+              (PP
+                (IN dalam)
+                (NP (NN waktu) (NP (CD 27) (NN tahun)))))))
+        (Z .))))) (p=1.09057e-93)
+(S
+  (SBAR
+    (SC Ketika)
+    (S
+      (NP-SBJ (NNP Wayne) (NNP Rooney))
+      (VP
+        (VB tertangkap)
+        (VP
+          (VB basah)
+          (SBAR
+            0
+            (S
+              (NP-SBJ *)
+              (VP
+                (VB merokok)
+                (PP
+                  (IN di)
+                  (NP (CD beberapa) (NN kesempatan)))))))
+        (NP
+          (NN saat)
+          (NN jeda)
+          (VP
+            (VB libur)
+            (PP
+              (IN antara)
+              (NP
+                (NP
+                  (NN akhir)
+                  (NP (NNP Piala) (NNP Dunia)))
+                (CC dan)
+                (NP
+                  (NN dimulainya)
+                  (NN musim)
+                  (NN kompetisi)))))
+          (NP (NNP Liga) (NNP Primer))))))
+  (Z ,)
+  (NP-SBJ (PRP ia))
+  (VP (VB dikecam) (VB habis))
+  (Z .)) (p=3.13944e-124)
+(S (NP-SBJ (NN Bintang)) (NP-PRD (NN idola))) (p=6.15961e-14)
+(S
+  (Z ")
+  (S-NOM-SBJ
+    (NP-SBJ (PRP Kita))
+    (VP
+      (VB tahu)
+      (SBAR
+        0
+        (S
+          (NP-SBJ (NN anak-anak) (PR itu))
+          (VP
+            (VB terpengaruh)
+            (PP (IN oleh) (NP (NN orang))))))
+      (PP (IN di) (NP (NN sekeliling) (PRP mereka)))
+      (Z .)
+      (NP (NN Penelitian))))
+  (VP
+    (VB membuktikan)
+    (SBAR
+      0
+      (S
+        (NP-SBJ
+          (PRP mereka)
+          (SBAR
+            (SC yang)
+            (S
+              (NP-SBJ *)
+              (VP
+                (VB tumbuh)
+                (PP
+                  (IN dengan)
+                  (NP (NN orang) (NN tua) (NN perokok)))
+                (Z ,)
+                (NP (CD 90) (SYM %))))))
+        (VP (VB menjadi) (NP (NN perokok))))))
+  (Z .)
+  (Z ")) (p=1.3692e-91)
+(S
+  (Z ")
+  (S
+    (NP-SBJ
+      (DT Yang)
+      (VP
+        (VB bertanggung jawab)
+        (PP (IN atas) (NP (CD banyak) (PRP nya)))))
+    (NP-PRD
+      (NN remaja)
+      (SBAR
+        (SC yang)
+        (S
+          (NP-SBJ *)
+          (VP
+            (VB merokok)
+            (VP (VB adalah) (NP (PRP mereka))))))
+      (SBAR
+        (SC yang)
+        (S
+          (NP-SBJ *)
+          (VP
+            (VB memberi)
+            (NP
+              (NN akses)
+              (PP (IN ke) (NP (NN rokok) (PR itu))))
+            (ADJP (JJ sendiri)))
+          (Z .)))))
+  (S
+    (NP-SBJ (PR Itu) (RP lah))
+    (SBAR-PRD
+      (SC yang)
+      (S (NP-SBJ *) (VP (MD harus) (VP (VB dikejar))))))
+  (Z .)
+  (Z ")) (p=7.83747e-81)
+(S
+  (NP-SBJ (NNP Pemerintah))
+  (ADVP (RB juga))
+  (VP
+    (MD telah)
+    (VP
+      (VB berkomitmen)
+      (SBAR
+        (SC untuk)
+        (S
+          (NP-SBJ *)
+          (VP
+            (VB meningkatkan)
+            (NP (NN produksi) (NN padi) (JJ nasional))
+            (PP
+              (IN melalui)
+              (NP
+                (NP (NN program-program) (JJ khusus))
+                (CC dan)
+                (NP
+                  (NN pendanaan)
+                  (SBAR
+                    (SC sehingga)
+                    (S
+                      (NP-SBJ (NN harga) (NN beras))
+                      (VP (MD dapat) (VP (VB terkendali)))))))))))))
+  (Z .)) (p=1.30549e-80)
+(S
+  (NP-SBJ (PRP Saya))
+  (VP
+    (VB kira)
+    (ADJP (RB lebih) (JJ tinggi))
+    (PP (IN dari) (NP (NN target) (NN tahun) (PR ini))))
+  (Z .)) (p=8.5859e-25)
+(S
+  (NP-SBJ (PR Ini))
+  (VP
+    (VB menunjukkan)
+    (SBAR
+      0
+      (S (NP-SBJ (NN sistem)) (VP (VB berjalan)) (Z .))))) (p=9.80073e-19)
+(S
+  (PP (IN Dalam) (NP (NN pertemuan) (PR itu)))
+  (Z ,)
+  (NP-SBJ (NN Dubes))
+  (VP
+    (VB melihat)
+    (NP (CD banyak) (NN hal))
+    (SBAR
+      (SC yang)
+      (S
+        (NP-SBJ *)
+        (VP
+          (MD bisa)
+          (VP
+            (VB dilakukan)
+            (PP (IN oleh) (NP (NNP ICMI) (NNP London)))
+            (PP
+              (IN dalam)
+              (VP
+                (VB mengisi)
+                (NP
+                  (NN peluang)
+                  (SBAR
+                    (SC yang)
+                    (S
+                      (NP-SBJ *)
+                      (VP
+                        (VB ada)
+                        (PP
+                          (IN dalam)
+                          (NP
+                            (NN upaya)
+                            (VP
+                              (VB membantu)
+                              (NP
+                                (NN pengusaha)
+                                (NNP Indonesia)))))))))))
+            (SBAR
+              (SC yang)
+              (S
+                (NP-SBJ *)
+                (VP
+                  (MD akan)
+                  (VP
+                    (VB mengembangkan)
+                    (NP (NN sayap) (PRP nya))
+                    (PP (IN di) (NP (NNP Inggris))))))))))))
+  (Z .)) (p=2.53906e-86)
+(S
+  (PP
+    (IN Menurut)
+    (NP
+      (NNP UK)
+      (NNP Trade)
+      (NNP and)
+      (NNP Investment)
+      (NNP UKTI)))
+  (Z ,)
+  (NP-SBJ
+    (NP (NN nilai) (NN ekspor) (NNP Indonesia))
+    (PP (IN ke) (NP (NNP Inggris)))
+    (NP (NN sepanjang) (NN tahun) (CD 2005)))
+  (VP
+    (VB tercatat)
+    (NP
+      (NN senilai)
+      (NP
+        (NP (CD 517) (CD juta))
+        (NP (NNP Pound) (NNP Sterling)))
+      (Z ,)
+      (SBAR
+        (SC yang)
+        (NP
+          (NP
+            (NN kebanyakan)
+            (NP-TTL
+              (VB didominasi)
+              (NN jenis)
+              (NN barang-barang)
+              (NN tekstil)))
+          (CC dan)
+          (NP (NN alas) (NN kaki))))))
+  (Z .)) (p=6.41944e-141)
+(S
+  (S
+    (NP-SBJ (NP (NN Saat) (PR ini)) (PRP kami))
+    (VP
+      (MD baru)
+      (ADJP
+        (ADJP (JJ mampu))
+        (VP
+          (VB memenuhi)
+          (NP (CD dua) (NN pesawat))
+          (NP (NNP ATR) (NNP 42))))))
+  (Z -)
+  (NP
+    (NP (CD 300) (NN pesanan))
+    (NP (NN perusahaan) (FW travel)))
+  (NP (NNP PT) (NNP Mirantha) (NNP Nuansa) (NNP Ayu))
+  (Z .)) (p=3.66284e-79)
+(S
+  (NP-SBJ
+    (NP (CD Salah satu) (PRP nya))
+    (SBAR
+      (SC dengan)
+      (S
+        (NP-SBJ *)
+        (VP
+          (VB menyediakan)
+          (NP (NN alat) (NN transportasi) (NN udara))
+          (PP
+            (IN melalui)
+            (NP
+              (NN kerja sama)
+              (PP (IN dengan) (NP (NNP IATA))))))
+        (Z ,))))
+  (VP (VB lanjut) (S *T*-1) (NP-LGS (NNP Henry)))
+  (Z .)) (p=6.94833e-54)
+(S
+  (CC Sedangkan)
+  (NP-SBJ
+    (NN target)
+    (UCP
+      (NP
+        (NP (NN laba bersih) (CD 2007))
+        (NP
+          (QP (JJ sebesar) (SYM Rp) (CD 30) (CD miliar))
+          *U*))
+      (CC atau)
+      (VP (VB naik))))
+  (VP
+    (VB dibandingkan)
+    (NP
+      (CD 2006)
+      (NP
+        (QP (JJ sebesar) (SYM Rp) (CD 28,6) (CD miliar))
+        *U*)))
+  (Z .)) (p=4.30041e-50)
+(S
+  (S
+    (NP-SBJ-1
+      (NN Periode)
+      (NP (NN penawaran) (NN obligasi))
+      (PR tersebut))
+    (VP
+      (VB berlangsung)
+      (PP
+        (IN pada)
+        (NP
+          (NP (CD 24) (Z -) (CD 26))
+          (NP (NNP April) (NNP 2007))))))
+  (CC dan)
+  (S
+    (NP-SBJ *)
+    (VP
+      (MD akan)
+      (VP
+        (VB dicatatkan)
+        (PP
+          (IN di)
+          (NP
+            (NNP Bursa)
+            (NNP Efek)
+            (NNP Surabaya)
+            (NNP BES)))
+        (PP (IN pada) (NP (NNP 1) (NNP Mei) (CD 2007))))))
+  (Z .)) (p=2.31039e-85)
+(S
+  (NP-SBJ
+    (NN Jumlah)
+    (SBAR
+      (SC yang)
+      (ADJP
+        (JJ sama)
+        (NP
+          (JJ sebesar)
+          (QP (CD 0,11))
+          (NN dolar)
+          (NNP AS))
+        (PP (IN per) (NP (NND lembar) (NN saham))))))
+  (VP
+    (MD telah)
+    (VP
+      (VB dibayarkan)
+      (PP (IN untuk) (NP (NN tahun) (CD 2005)))
+      (Z ,)
+      (S (VP (VB kata) (S *T*-1)) (NP-SBJ (PRP dia)))))
+  (Z .)) (p=1.55944e-57)
+(S
+  (NP-SBJ (NNP Bank) (NNP Central) (NNP Asia) (NNP BCA))
+  (VP
+    (VB menargetkan)
+    (SBAR
+      0
+      (S
+        (NP-SBJ *)
+        (VP
+          (MD dapat)
+          (VP
+            (VB menyalurkan)
+            (NP
+              (NN kredit)
+              (NP
+                (QP
+                  (JJ sebesar)
+                  (SYM Rp)
+                  (CD 10)
+                  (CD triliun))
+                *U*))
+            (PP (IN pada) (NP (NN tahun) (CD 2007))))))))
+  (Z .)) (p=3.93159e-45)
+(S
+  (PP
+    (IN Pada)
+    (NP
+      (NP (CD 31) (NP (NNP Desember) (CD 2006)))
+      (Z ,)
+      (NP (NN porsi) (NN kredit) (JJ Komersial))
+      (CC dan)
+      (NP
+        (NN UKM)
+        (VP
+          (VB mencapai)
+          (NP (CD 47,4) (CD persen))
+          (PP (IN dari) (NP (NN total) (NN kredit)))))))
+  (Z ,)
+  (NP-SBJ (NN sementara) (NN kredit))
+  (NP-TMP (NN Korporasi))
+  (VP
+    (VB berkontribusi)
+    (NP
+      (NP (CD 38,8) (CD persen))
+      (CC dan)
+      (NP (NN kredit) (NN Konsumer)))
+    (NP (CD 13,8) (CD persen)))
+  (Z .)) (p=8.45624e-96)
+(S
+  (NP-SBJ (NNP Singapura) (NP (NN sendiri)))
+  (VP
+    (VB berhasil)
+    (VP
+      (VB mendatangkan)
+      (NP (NN PMA) (NN tahun) (CD 2006))
+      (NP (JJ sebesar) (CD 30) (CD miliar)))
+    (NP
+      (QP
+        (NN ringgit)
+        (CD 8,3)
+        (CD miliar)
+        (NN dolar)
+        (NNP AS))))
+  (Z .)) (p=1.89745e-49)
+(S
+  (NP-SBJ
+    (NP
+      (NP (NN Penurunan) (NN produksi) (PR ini))
+      (PP
+        (IN akibat)
+        (NP (NN dampak) (NN musim) (NN kering))))
+    (SBAR
+      (SC yang)
+      (S
+        (S
+          (NP-SBJ *)
+          (VP
+            (VB terjadi)
+            (PP
+              (IN pada)
+              (NP (NN semester) (NP (NNP II) (CD 2006))))))
+        (Z ,)
+        (CC dan)
+        (S
+          (NP-SBJ (NN dampak) (PRP nya))
+          (VP
+            (MD masih)
+            (VP
+              (VB dirasakan)
+              (PP
+                (IN pada)
+                (NP (NN kuartal) (OD pertama) (CD 2007))))))
+        (Z ,))))
+  (VP
+    (VB kata)
+    (S *T*-1)
+    (NP-LGS
+      (NP (NNP Direktur) (NNP AALI))
+      (Z ,)
+      (NP
+        (NP (NNP Julie) (NNP Syaftari))
+        (PP (IN kepada) (NP (NNP BEJ) (Z ,) (NNP Kamis))))
+      (Z .)))) (p=6.45171e-111)
+(S
+  (S
+    (NP-SBJ (NN Makro) (NN ekonomi))
+    (VP (VB membaik))
+    (Z ,))
+  (CC sedangkan)
+  (S
+    (NP-SBJ
+      (NN inflasi)
+      (S
+        (CC dan)
+        (NP-SBJ (NN nilai) (NN tukar))
+        (NP-PRD (RB terus) (JJ stabil))
+        (Z ,)))
+    (VP
+      (VB kata)
+      (S *T*-1)
+      (NP-LGS
+        (NP (NN Kepala) (NN Eksekutif) (NNP LPS))
+        (Z ,)
+        (NP
+          (NP (NNP Krisna) (NNP Wijaya))
+          (PP (IN di) (NP (NNP Jakarta) (Z ,) (NNP Kamis))))
+        (Z .))))) (p=4.0282e-90)
+(S
+  (SBAR
+    (SC Sementara)
+    (S
+      (NP-SBJ (NP (PR itu)) (Z ,) (NP (NN pendapatan)))
+      (NP-PRD (NEG bukan) (NN bunga))))
+  (SBAR (SC yang) (ADJP (RB lebih) (JJ tinggi)))
+  (VP
+    (VB berasal)
+    (PP
+      (IN dari)
+      (NP (NN penjualan) (NN obligasi) (NN pemerintah)))
+    (PP (IN di) (NP (CD 2006))))
+  (Z .)) (p=1.50381e-49)
+(S
+  (CC Sedangkan)
+  (S
+    (NP-SBJ (NN sisa) (PRP nya))
+    (VP
+      (ADJP (JJ sebesar) (NP (CD 17) (CD persen)))
+      (VB digolongkan)
+      (PP
+        (IN sebagai)
+        (NP
+          (NN kredit)
+          (VP (VB bermasalah) (ADJP (JJ komersial)))))))
+  (CC dan)
+  (S
+    (NP
+      (NP
+        (NP
+          (NP
+            (NN konsumsi)
+            (Z ,)
+            (SBAR
+              (SC yang)
+              (S
+                (S
+                  (SC walaupun)
+                  (NP-SBJ *)
+                  (VP
+                    (VB meningkat)
+                    (PP (IN di) (NP (CD 2006)))))
+                (CC tetapi)
+                (S (NP-SBJ *) (PP (IN dari))))))
+          (NND basis))
+        (SBAR (SC yang) (ADJP (JJ rendah))))
+      (Z ,)
+      (SBAR
+        (SC dengan)
+        (S
+          (NP-SBJ (NN rasio) (NN kredit))
+          (VP
+            (VB bermasalah)
+            (PP (IN dari) (NP (OD kedua)))))))
+    (NP-SBJ-1 (NN segmen) (PR tersebut))
+    (VP
+      (VB meningkat)
+      (VP
+        (VB menjadi)
+        (NP (CD 2,1) (CD persen))
+        (PP (IN di) (NP (NN akhir) (NN tahun) (CD 2006))))
+      (PP
+        (IN dari)
+        (NP
+          (NP (CD 1,7) (CD persen))
+          (PP (IN di) (NP (NN akhir) (CD 2005))))))
+    (Z .))) (p=2.48969e-141)

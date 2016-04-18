@@ -175,7 +175,7 @@ if __name__ == "__main__":
             trees = viterbi_parser.parse_batch(tagged)
             for t in trees:
                 if len(t) > 0:
-                    output.write(str(t))
+                    output.write(str(t) + '\n')
                     break
             bar.next()
         bar.finish()
@@ -204,7 +204,7 @@ if __name__ == "__main__":
             for t in trees:
                 if len(t) > 0:
                     correct += 1
-                    output.write(str(t))
+                    output.write(str(t) + '\n')
                     break
             bar.next()
         bar.finish()

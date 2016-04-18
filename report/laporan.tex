@@ -1,0 +1,474 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{sectsty} % Allows customizing section commands
+\usepackage{graphicx}
+\usepackage{fancyhdr} % Custom headers and footers
+\usepackage{nicefrac}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+
+\allsectionsfont{\fontsize{12}{15}\normalfont} % Make all sections centered, the default font and small caps
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
+
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Fakultas Ilmu Komputer, Universitas Indonesia} \\ [8pt]  \textsc{CSC4602354  Natural Language Processing} \\ [8pt] 
+\textsc {Tugas 1 Statistical Language Modelling (POS tagging \& Probabilistic Parsing)}
+%Your university, school and/or department name(s)
+%\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+%\huge Assignment Title \\ % The assignment title
+%\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{	
+	\small Yohanes Gultom \\
+	\small 1506706345
+} % Your name
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%------------------------------------------------
+
+\section{POS Tagging}
+
+%------------------------------------------------
+
+\subsection{Deskripsi Penanganan Format}
+
+Format yang digunakan pada korpus \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv| adalah:
+
+\begin{lstlisting}[language=XML]
+<kalimat id=1>
+Kera	NN
+untuk	SC
+amankan	VB
+pesta olahraga	NN
+</kalimat>
+<kalimat id=2>
+Kata1	POS1
+kata2	POS2
+kata3	POS3
+</kalimat>
+\end{lstlisting}
+
+\subsubsection{NLTK}
+
+Untuk NLTK\footnote{\url{http://www.nltk.org/}} (Python), API yang ada untuk melakukan \textit{training} \textit{POS Tagger} menerima \\\verb|list of list of tuples| yang memiliki representasi seperti:
+
+\begin{lstlisting}[language=Python]
+[[(Kera, NN), (untuk, SC), (amankan, VB), (pesta olahraga, NN)], [(Kata1, POS1), (Kata2, POS2), (Kata3, POS3)]]
+\end{lstlisting}
+
+Untuk membaca file korpus dan mengubahnya menjadi objek yang sesuai dengan argumen masukan API, digunakan fungsi \verb|parse_train_data| dengan kode sebagai berikut:
+
+\begin{lstlisting}[language=Python]
+def parse_train_data(train_file_path):
+	p = re.compile('<kalimat id=(.+)>((.|\n)*?)</kalimat>')
+	file = open(train_file_path, 'r')
+	raw = file.read()
+	sents = []
+	for s in p.findall(raw):
+		words = s[1].strip().split('\n')
+		sent = []
+		for w in words:
+			array = w.split('\t')
+			sent.append((array[0], array[1]))
+		sents.append(sent)
+	file.close()
+	return sents
+\end{lstlisting}
+
+Kalimat diekstrak menggunakan regex \verb#<kalimat id=(.+)>((.|\n)*?)</kalimat>#, kemudian dibaca per baris dan dipisahkan dengan karakter \verb|\t|. NLTK mengakomodasi nilai terminal yang dipisahkan spasi jadi tidak ada perlakuan khusus untuk terminal seperti \verb|pesta olahraga|.
+
+\subsubsection{OpenNLP}
+
+Sedangkan jika gunakan kakas OpenNLP\footnote{\url{https://opennlp.apache.org/}} (Java), untuk melakukan \textit{training} \textit{POS Tagger} dibutuhkan format file input sebagai berikut:
+
+\begin{lstlisting}
+Kera_NN untuk_SC amankan_VB pesta-olahraga_NN
+Kata1_POS1 Kata2_POS2 Kata3
+\end{lstlisting}
+
+Untuk mengubah format dari tiap kalimat pada \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv| ke format yang dibutuhkan \textit{POS Tagger} OpenNLP digunakan fungsi \verb|convertTrainString| berikut:
+
+\begin{lstlisting}[language=Java]
+private static final String XML_TAG_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";
+
+/* other code.. */
+
+public String convertTrainString(String line, boolean firstWord) {
+	String toWrite = null;
+	matcher = pattern.matcher(line);
+	if (!matcher.matches()) {
+		// read the word if it's not an xml tag
+		// replace tab with underscore
+		if (line.contains(" ")) {
+			// split compound word to multiple words with same tag
+			String[] temp = line.split("\t");
+			String tag = temp[1];
+			String[] words = temp[0].split(" ");
+			for (int i = 0; i < words.length; i++) {
+				words[i] += "_" + tag;
+			}
+			toWrite = StringUtils.join(words, " ");
+		} else {
+			toWrite = line.replace("\t", "_");
+		}
+		if (!firstWord) {
+			toWrite = " " + toWrite;
+		}
+	} else if (!firstWord) {
+		// write newline every time we see an xml tag
+		toWrite = "\n";
+	}
+	return toWrite;
+}
+\end{lstlisting}
+
+Regex \verb#<(\"[^\"]*\"|'[^']*'|[^'\">])*># digunakan untuk mengenali dan melewati tag \verb|<kalimat>|. Kemudian tiap kata dipisahkan dengan tag-nya menggunakan karakter \verb|\t|. Untuk menghindari kegagalan parsing, karakter spasi diubah menjadi \verb|-|. Hal ini mengakibatkan kata tersebut menjadi tidak berguna dalam proses\textit{tagging} tetapi kata lainnya dalam kalimat tersebut tetap bisa berguna.
+
+\subsection{Hasil Uji Coba dan Analisis}
+
+\subsubsection{NLTK}
+
+Program yang dibuat menggunakan API NLTK adalah \verb|tagger.py|\footnote{\url{https://github.com/yohanesgultom/nlp-experiments/blob/master/python/tagger.py}} yang menggunakan \verb|nltk.tag.tnt|.
+
+Uji coba pertama adalah melakukan POS\textit{tagging} pada paragraf Listing \ref{lst:wikipediatxt} yang diambil dari Wikipedia Indonesia\footnote{\url{https://id.wikipedia.org}} dengan tagger yang dilatih menggunakan korpus\\ \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv|. Perintah yang dijalankan adalah:
+
+\begin{lstlisting}
+python tagger.py ../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv ../data/pos-tagging/Wikipedia.txt
+\end{lstlisting}
+
+Hasil dari eksekusi perintah ini adalah file bernama \verb|Wikipedia.nltk.tagged| yang berisi hasil\textit{tagging} seperti pada Listing \ref{lst:wikipedianltktagged}. Waktu yang dibutuhkan program untuk melakukan\textit{tagging} adalah 1.960335 detik.
+
+Pada saat melakukan \textit{parsing} korpus \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv|, ternyata jumlah kalimat yang diekstraksi adalah 10030. Hal ini terjadi karena terdapat kalimat yang memiliki id yang sama seperti 14a dan 14b.
+
+\begin{lstlisting}[caption={Wikipedia.txt},label={lst:wikipediatxt}]
+Koperasi di Indonesia
+Koperasi di Indonesia, menurut UU tahun 1992, didefinisikan sebagai badan usaha yang beranggotakan orang-seorang atau badan hukum koperasi dengan melandaskan kegiatannya berdasarkan prinsip-prinsip koperasi sekaligus sebagai gerakan ekonomi rakyat yang berdasar atas asas kekeluargaan .
+Di Indonesia, prinsip koperasi telah dicantumkan dalam UU No . 12 Tahun 1967 dan UU No . 25 Tahun 1992 .
+Prinsip koperasi di Indonesia kurang lebih sama dengan prinsip yang diakui dunia internasional dengan adanya sedikit perbedaan, yaitu adanya penjelasan mengenai SHU (Sisa Hasil Usaha) .
+
+Sejarah koperasi di Indonesia
+Sejarah singkat gerakan koperasi bermula pada abad ke-20 yang pada umumnya merupakan hasil dari usaha yang tidak spontan dan tidak dilakukan oleh orang-orang yang sangat kaya .
+Koperasi tumbuh dari kalangan rakyat, ketika penderitaan dalam lapangan ekonomi dan sosial yang ditimbulkan oleh sistem kapitalisme semakin memuncak .
+Beberapa orang yang penghidupannya sederhana dengan kemampuan ekonomi terbatas, terdorong oleh penderitaan dan beban ekonomi yang sama, secara spontan mempersatukan diri untuk menolong dirinya sendiri dan manusia sesamanya .
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Wikipedia.nltk.tagged},label={lst:wikipedianltktagged}]
+Koperasi_NN	di_IN	Indonesia_NNPKoperasi_NN	di_IN	Indonesia_NNP	,_Z	menurut_IN	UU_NNP	tahun_NN	1992_CD	,_Z	didefinisikan_VB	sebagai_IN	badan_NN	usaha_NN	yang_SC	beranggotakan_VB	orang-seorang_Unk	atau_CC	badan_NN	hukum_NN	koperasi_NN	dengan_IN	melandaskan_Unk	kegiatannya_Unk	berdasarkan_VB	prinsip-prinsip_NN	koperasi_NN	sekaligus_RB	sebagai_IN	gerakan_NN	ekonomi_NN	rakyat_NN	yang_SC	berdasar_VB	atas_IN	asas_Unk	kekeluargaan_Unk	._ZDi_IN	Indonesia_NNP	,_Z	prinsip_NN	koperasi_NN	telah_MD	dicantumkan_VB	dalam_IN	UU_NNP	No_NNP	._Z	12_CD	Tahun_NN	1967_NNP	dan_CC	UU_NNP	No_NNP	._Z	25_CD	Tahun_NNP	1992_CD	._ZPrinsip_Unk	koperasi_NN	di_IN	Indonesia_NNP	kurang_RB	lebih_RB	sama_JJ	dengan_IN	prinsip_NN	yang_SC	diakui_VB	dunia_NN	internasional_JJ	dengan_IN	adanya_NN	sedikit_CD	perbedaan_NN	,_Z	yaitu_SC	adanya_NN	penjelasan_NN	mengenai_IN	SHU_Unk	(_Z	Sisa_NN	Hasil_NN	Usaha_NN	)_Z	._ZSejarah_NN	koperasi_NN	di_IN	Indonesia_NNPSejarah_NN	singkat_JJ	gerakan_NN	koperasi_NN	bermula_Unk	pada_IN	abad_NN	ke-20_Unk	yang_SC	pada_IN	umumnya_NN	merupakan_VB	hasil_NN	dari_IN	usaha_NN	yang_SC	tidak_NEG	spontan_Unk	dan_CC	tidak_NEG	dilakukan_VB	oleh_IN	orang-orang_NN	yang_SC	sangat_RB	kaya_JJ	._ZKoperasi_NN	tumbuh_VB	dari_IN	kalangan_NN	rakyat_NN	,_Z	ketika_SC	penderitaan_NN	dalam_IN	lapangan_NN	ekonomi_NN	dan_CC	sosial_JJ	yang_SC	ditimbulkan_VB	oleh_IN	sistem_NN	kapitalisme_NN	semakin_RB	memuncak_VB	._ZBeberapa_CD	orang_NN	yang_SC	penghidupannya_Unk	sederhana_JJ	dengan_IN	kemampuan_NN	ekonomi_NN	terbatas_JJ	,_Z	terdorong_VB	oleh_IN	penderitaan_NN	dan_CC	beban_NN	ekonomi_NN	yang_SC	sama_JJ	,_Z	secara_IN	spontan_Unk	mempersatukan_VB	diri_NN	untuk_SC	menolong_VB	dirinya_Unk	sendiri_NN	dan_CC	manusia_NN	sesamanya_Unk	._Z
+\end{lstlisting}
+
+Kemudian untuk mengevaluasi kinerja \textit{POS tagger}, pengujian dilakukan menggunakan 1000 kalimat yang diekstrak dari korpus \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv| dan \textit{training} dilakukan pada 9030 kalimat sisanya. Perintah yang dijalankan adalah:
+
+\begin{lstlisting}
+python tagger.py ../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv 1000 sentences.tag
+\end{lstlisting}
+
+Hasil \textit{tagging} dicetak pada \verb|sentences.tag| (sesuai argumen eksekusi) dengan format seperti Listing \ref{lst:sentencestagnltk}. Sedangkan statistik eksekusi program:
+
+\begin{lstlisting}
+Accuracy: 91.7577559878 %
+Total time: 111.527937 s
+\end{lstlisting}
+
+\begin{lstlisting}[caption={sentences.tag},label={lst:sentencestagnltk}]
+Mengajari_VB	anak_NN	mengenai_IN	kebiasaan_NN	yang_SC	sehat_JJ	memerlukan_VB	keterlibatan_NN	seluruh_CD	anggota_NN	keluarga_NN	anak-anak_NN	tak_NEG	kan_RP	mempelajari_VB	semua_CD	ini_PR	dengan_IN	sendiri_NN	-nya_PRP	,_Z	kata_VB	-nya_PRP	._Z
+Untuk_SC	kedua_OD	kali_NND	-nya_PRP	batalion_Unk	teknik_NN	mesin_NN	China_NNP	bertolak_VB	ke_IN	Lebanon_NNP	22_NNP	Januari_NNP	untuk_SC	bergabung_VB	dengan_IN	misi_NN	penjaga_NN	perdamaian_NN	PBB_NNP	di sana_PR	._Z
+Batalion_Unk	teknik_NN	kedua_CD	militer_NN	China_NNP	ini_PR	terdiri_VB	275_CD	personel_NN	di_IN	samping_NN	satu_CD	tim_NN	medis_JJ	yang_SC	beranggotakan_VB	60_CD	orang_NN	._Z
+
+/* remaining omitted */
+\end{lstlisting}
+
+\subsubsection{OpenNLP}
+
+Program yang dibuat menggunakan API OpenNLP adalah \verb|yohanes.nlp|\footnote{\url{https://github.com/yohanesgultom/nlp-experiments/tree/master/java/nlp}} yang menggunakan\\ \verb|opennlp.tools.postag.POSTaggerME|. 
+
+Uji coba pertama adalah melakukan POS\textit{tagging} pada paragraf Listing \ref{lst:wikipediatxt} yang diambil dari Wikipedia Indonesia\footnote{\url{https://id.wikipedia.org}} dengan tagger yang dilatih menggunakan korpus\\ \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv|. Perintah yang dijalankan adalah:
+
+\begin{lstlisting}
+sh target/appassembler/bin/nlp pos-tag ../../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv ../../data/pos-tagging/Wikipedia.txt
+\end{lstlisting}
+
+Hasil dari eksekusi perintah ini adalah file bernama \verb|Wikipedia.opennlp.tagged| yang berisi hasil\textit{tagging} seperti pada Listing \ref{lst:wikipediaopennlptagged}. Waktu yang dibutuhkan program untuk melakukan\textit{tagging} adalah 70.589 detik. Waktu yang dibutuhkan lebih lama karena proses \textit{training} dengan algoritma \textit{maximum-log-likelihood} dengan 100 iterasi.
+
+\begin{lstlisting}[caption={Wikipedia.opennlp.tagged},label={lst:wikipediaopennlptagged}]
+Koperasi_NN di_IN Indonesia_NNP
+Koperasi_NN di_IN Indonesia_NNP ,_Z menurut_IN UU_NNP tahun_NNP 1992_CD ,_Z didefinisikan_VB sebagai_IN badan_NN usaha_NN yang_SC beranggotakan_VB orang_NN -_Z seorang_NND atau_CC badan_NN hukum_NN koperasi_NN dengan_IN melandaskan_VB kegiatannya_NN berdasarkan_VB prinsip_NN -_Z prinsip_FW koperasi_NN sekaligus_RB sebagai_IN gerakan_NN ekonomi_NN rakyat_NN yang_SC berdasar_VB atas_IN asas_NN kekeluargaan_NN ._Z
+Di_IN Indonesia_NNP ,_Z prinsip_NN koperasi_NN telah_MD dicantumkan_VB dalam_IN UU_NNP No_NNP ._Z 12_CD Tahun_NN 1967_CD dan_CC UU_NNP No_NNP ._Z 25_CD Tahun_NN 1992_CD ._Z
+Prinsip_NN koperasi_NN di_IN Indonesia_NNP kurang_RB lebih_RB sama_JJ dengan_IN prinsip_NN yang_SC diakui_VB dunia_NN internasional_JJ dengan_IN adanya_NN sedikit_CD perbedaan_NN ,_Z yaitu_SC adanya_NN penjelasan_NN mengenai_IN SHU_NNP (_Z Sisa_NN Hasil_NN Usaha_NN )_Z ._Z
+Sejarah_NN koperasi_NN di_IN Indonesia_NNP
+Sejarah_NN singkat_NN gerakan_NN koperasi_NN bermula_VB pada_IN abad_NN ke_IN -_NNP 20_CD yang_SC pada_IN umumnya_NN merupakan_VB hasil_NN dari_IN usaha_NN yang_SC tidak_NEG spontan_JJ dan_CC tidak_NEG dilakukan_VB oleh_IN orang_NN -_NNP orang_NN yang_SC sangat_RB kaya_JJ ._Z
+Koperasi_NN tumbuh_VB dari_IN kalangan_NN rakyat_NN ,_Z ketika_SC penderitaan_NN dalam_IN lapangan_NN ekonomi_NN dan_CC sosial_JJ yang_SC ditimbulkan_VB oleh_IN sistem_NN kapitalisme_NN semakin_RB memuncak_VB ._Z
+Beberapa_CD orang_NN yang_SC penghidupannya_NN sederhana_JJ dengan_IN kemampuan_NN ekonomi_NN terbatas_JJ ,_Z terdorong_VB oleh_IN penderitaan_NN dan_CC beban_NN ekonomi_NN yang_SC sama_JJ ,_Z secara_IN spontan_NNP mempersatukan_VB diri_NN untuk_SC menolong_VB dirinya_NN sendiri_NN dan_CC manusia_NN sesamanya_NN ._Z
+\end{lstlisting}
+
+Kemudian untuk mengevaluasi kinerja \textit{POS tagger}, pengujian dilakukan menggunakan korpus \verb|Indonesian_Manually_Tagged_Corpus_ID.tsv| dengan perbandingan 9 (\textit{training}) : 1 (\textit{testing}). Perintah yang dijalankan adalah:
+
+\begin{lstlisting}
+sh target/appassembler/bin/nlp pos-tag -split 9:1 ../../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv
+\end{lstlisting}
+
+Hasil \textit{tagging} dicetak pada \verb|sentences.tag| (sesuai argumen eksekusi) dengan format seperti Listing \ref{lst:sentencestagopennlp}. Sedangkan statistik eksekusi program:
+
+\begin{lstlisting}
+Accuracy: 95.89224%
+Total time: 42.179 s
+\end{lstlisting}
+
+\begin{lstlisting}[caption={sentences.tag},label={lst:sentencestagopennlp}]
+Kera_NNP untuk_SC amankan_NN pesta_NN olahraga_NN
+Pemerintah_NN kota_NN Delhi_NNP mengerahkan_VB monyet_NN untuk_SC mengusir_VB monyet-monyet_NN lain_JJ yang_SC berbadan_VB lebih_RB kecil_JJ dari_IN arena_NN Pesta_NN Olahraga_NNP Persemakmuran_NNP ._Z
+Beberapa_CD laporan_NN menyebutkan_VB setidaknya_RB 10_CD monyet_NN ditempatkan_VB di_IN luar_NN arena_NN lomba_NN dan_CC pertandingan_NN di_IN ibukota_NN India_NNP ._Z
+Pemkot_NN Delhi_NNP memiliki_VB 28_CD monyet_NN dan_CC berencana_VB mendatangkan_VB 10_CD monyet_NN sejenis_NN dari_IN negara_NN bagian_NN Rajasthan_NNP ._Z
+Jumlah_NN monyet_NN di_IN ibukota_NN India_NNP mencapai_VB ribuan_CD ,_Z sebagian_NN besar_NN berada_VB di_IN kantor-kantor_NN pemerintah_NN dan_CC hewan_NN ini_PR dianggap_VB mengganggu_VB ketertiban_NN umum_JJ ._Z
+
+/* remaining omitted */
+\end{lstlisting}
+
+\subsection{Kesimpulan}
+
+Berdasarkan hasil uji coba \textit{tagging} di atas, berikut kesimpulan yang bisa diambil mengenai kedua kakas NLP tersebut: \\
+
+OpenNLP
+\begin{enumerate}
+	\item Relatif lebih akurat
+	\item Relatif lebih cepat untuk banyak kalimat (> 1000)
+	\item API yang tersedia kurang fleksibel (contoh: hanya bisa membaca dari \verb|InputStream|)
+	\item Lebih kompleks untuk digunakan karena berb
+	\item Dokumentasi kurang lengkap
+\end{enumerate}
+
+NLTK
+\begin{enumerate}
+	\item Relatif kurang akurat
+	\item Relatif lebih lambat untuk banyak kalimat tapi lebih cepat untuk sedikit kalimat (< 10)
+	\item API yang tersedia lebih fleksibel (contoh: bisa membaca dari struktur data \verb|Tree|) dan lengkap (terdapat banyak jenis implementasi \textit{tagger})
+	\item Lebih mudah untuk digunakan (karena berbasis Python)
+	\item Dokumentasi lebih lengkap
+\end{enumerate}
+
+Selain itu, mengenai \textit{task POS Tagging} secara keseluruhan ada beberapa yang perlu diperhatikan:
+
+\begin{enumerate}
+	\item Hasil \textit{parsing} korpus harus selalu diuji dengan \textit{unit test} yang memadai untuk memastikan semua kasus teridentifikasi dan tertangani. Contoh: adanya terminal yang dipisahkan spasi (pesta olahraga), adanya id kalimat yang mengandung alfanumerik (14a, 14b .dst)
+	\item Kakas yang berbasis Java umumnya akan lebih cepat dalam melakukan \textit{POS Tagging} dari bahasa lain seperti Python karena proses kompilasi yang lebih mangkus dan optimasi internal pada JVM. Kelebihan kakas berbasis Python adalah kemudahan sintaks bahasa, dokumentasi dan API yang lebih banyak karena lebih popular sebagai kakas NLP
+\end{enumerate}
+
+\pagebreak
+
+%------------------------------------------------
+
+\section{Probabilistic Parsing}
+
+%------------------------------------------------
+
+Untuk kasus \textit{Probabilistik Parsing}, hanya NLTK yang digunakan karena OpenNLP dan Stanford NLP sulit digunakan untuk membangun \textit{parser} yang model bahasa nya belum disediakan.
+
+\subsection{Deskripsi Penanganan Format}
+
+Format yang digunakan pada korpus \verb|150324.001-300.bracket| adalah:
+
+\begin{lstlisting}
+ (NP  (NN	  (Kera)) (SBAR  (SC	  (untuk)) (S  (NP-SBJ  (*)) (VP  (VB	  (amankan)) (NP  (NN	  (pesta olahraga)))))))
+ (S        (NP-SBJ        (NNP	        (Pemerintah)) (NNP	        (kota)) (NNP	        (Delhi))) (VP        (VB	        (mengerahkan)) (NP        (NN	        (monyet))) (SBAR        (SC	        (untuk)) (S        (NP-SBJ        (*)) (VP        (VB	        (mengusir)) (NP        (NP      (NN	        (monyet-monyet)) (JJ	        (lain))) (SBAR        (SC	        (yang)) (S        (NP-SBJ        (*)) (VP        (VB	        (berbadan)) (ADJP        (RB	        (lebih)) (JJ	        (kecil))))))) (PP        (IN	        (dari)) (NP        (NN	        (arena)) (NP      (NNP  (Pesta Olahraga)) (NNP	        (Persemakmuran))))))))) (Z	        (.)))
+\end{lstlisting}
+
+Pada format ini jika dilihat sekilas sepertinya tiap \textit{parse tree} kalimat dipisahkan oleh baris baru tapi ternyata dalam satu baris bisa terdapat beberapa kalimat (memiliki lebih dari 1 root).
+
+Untuk NLTK, API yang ada untuk melakukan \textit{training} \textit{parsing} menerima \verb|list of nltk.Tree| yang memiliki representasi seperti:
+
+\begin{lstlisting}[language=Python]
+(S
+	(NP-SBJ (NN Kera))
+	(SBAR-PRD
+		(SC untuk)
+		(S
+			(NP-SBJ *)
+			(VP (VB amankan) (NP (NN pesta) (NN olahraga))))))
+\end{lstlisting}
+
+Kode fungsi yang digunakan untuk mengkonversi korpus ke format tersebut dideskripsikan Listing \ref{lst:corpus2trees}.
+
+\begin{lstlisting}[language=Python, caption={corpus2trees.tag},label={lst:corpus2trees}]
+def corpus2trees(text):
+	""" Parse the corpus and return a list of Trees """
+	rawparses = text.split('\n')
+	trees = []
+	for rp in rawparses:
+		if not rp.strip():
+			continue
+	
+		try:
+			for s in split_tree(rp):
+				s = remove_terminal_tree_format(s)
+				t = Tree.fromstring(s)
+				trees.append(t)
+		except ValueError:
+			logging.error('Malformed parse: "%s"' % rp)
+	
+	return trees
+\end{lstlisting}
+
+Seperti yang dijelaskan di atas, setiap baris bisa berisi lebih dari satu \textit{parse tree} (root S) jadi ketika di-\textit{parse}, 300 baris korpus menghasilkan 321 \textit{parse tree}.
+
+\subsection{Hasil Uji Coba dan Analisis}
+
+Program yang dibuat menggunakan API NLTK adalah \verb|parser.py|\footnote{\url{https://github.com/yohanesgultom/nlp-experiments/blob/master/python/parser.py}} yang menggunakan \verb|nltk.ViterbiParser| yang diekstensi untuk melakukan \textit{smoothing} sederhana untuk terminal yang tidak ada pada \textit{grammar}.
+
+Uji coba pertama adalah melakukan \textit{parsing} pada paragraf Listing \ref{lst:wikipediatxt} yang juga digunakan pada uji coba \textit{POS tagging}. Perintah yang dijalankan adalah:
+
+\begin{lstlisting}
+python parser.py ../data/prob-parsing/150324.001-300.bracket ../data/prob-parsing/Wikipedia.txt
+\end{lstlisting}
+
+Hasil dari eksekusi perintah ini seharusnya adalah file bernama \verb|Wikipedia.nltk.bracket|. Tetapi pada pengujian ini, program gagal menemukan \textit{parse tree} yang cocok untuk kalimat-kalimat pada Listing \ref{lst:wikipediatxt} sekalipun sudah digunakan teknis \textit{smoothing}. Kejadian ini kemungkinan besar terjadi karena tidak ada \textit{production rules} yang sesuai dari hasil \textit{training} dengan \\\verb|150324.001-300.bracket|.
+
+Uji coba yang kedua adalah melakukan \textit{parsing} terhadap 50 \textit{parse tree} yang diekstraksi dari korpus \verb|150324.001-300.bracket| setelah sebelumnya melakukan training dengan 271 \textit{parse tree} sisanya. Perintah yang digunakan adalah:
+
+\begin{lstlisting}
+python parser.py ../data/prob-parsing/150324.001-300.bracket 50 sentences.bracket
+\end{lstlisting}
+
+Hasil \textit{parsing} dicetak pada \verb|sentences.bracket| (sesuai argumen eksekusi) dengan format seperti Listing \ref{lst:sentencesbracketnltk}. Sedangkan statistik eksekusi program:
+
+\begin{lstlisting}
+Accuracy: 90.0 %
+Total time: 1213.776889 s
+\end{lstlisting}
+
+Akurasi baru dihitung dengan melihat berapa jumlah \textit{parse tree} yang ditemukan (tidak dibandingkan dengan korpus).
+
+\begin{lstlisting}[caption={sentences.bracket},label={lst:sentencesbracketnltk}]
+(S
+	(NP-SBJ (NN Kera))
+	(SBAR-PRD
+		(SC untuk)
+		(S
+			(NP-SBJ *)
+			(VP (VB amankan) (NP (NN pesta) (NN olahraga)))))) (p=4.33627e-29)
+(S
+	(S
+		(NP-SBJ (NN Monyet) (PR ini))
+		(VP
+			(VB diikat)
+			(NP *-1)
+			(PP (IN dengan) (NP (NN tali) (JJ panjang)))))
+	(CC dan)
+	(S
+		(NP-SBJ
+			(NP
+				(NN pelatih)
+				(SBAR
+					(SC yang)
+					(S
+						(NP-SBJ *)
+						(VP
+							(VB mengawasi)
+							(S
+								(NP-SBJ (PRP mereka))
+								(VP
+									(MD akan)
+									(VP
+										(VB melepas)
+										(NP (NN tali))
+										(ADVP (RB begitu)))))))))
+		(NP (NN monyet-monyet) (JJ kecil)))
+	(VP (ADJP (JJ lain)) (VB mendekat)))
+(Z .)) (p=9.05711e-86)
+		
+/* remaining omitted */
+\end{lstlisting}
+
+
+\subsection{Kesimpulan}
+
+Kesimpulan yang bisa diperoleh dari uji coba ini adalah:
+
+\begin{enumerate}
+	\item NLTK menyediakan API yang fleksibel untuk melakukan \textit{parsing} dengan banyak algoritma
+	\item Untuk memperoleh hasil \textit{parsing} dibutuhkan korpus yang menghasilkan variasi \textit{production rules / PCFG} yang cukup
+	\item Proses parsing dengan NLTK cukup lambat (1200 detik untuk 50 kalimat) jadi perlu dicoba alternatif lainnya
+	\item Sebelum memlih kakas NLP, perlu dilakukan penelaahan terhadap dokumentasi fungsi yang ditawarkan. Karena, sebagai contoh, kakas OpenNLP dan Stanford NLP tidak memiliki API yang cukup fleksibel untuk melakukan \textit{probability parsing} dalam bahasa selain Inggris
+\end{enumerate}
+
+%------------------------------------------------
+
+\end{document}

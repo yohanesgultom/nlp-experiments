@@ -2,6 +2,7 @@ package yohanes.nlp;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 public class App
 {
@@ -54,6 +55,8 @@ public class App
 
     public static void main(String[] args) {
 
+        long t0 = new Date().getTime();
+
         try {
             String task = args[0];
             // POS tagging task
@@ -78,5 +81,7 @@ public class App
             e.printStackTrace();
             System.exit(-1);
         }
+
+        System.out.println("Total time: " + ((new Date().getTime() - t0) / (float) 1000) + " s");
     }
 }

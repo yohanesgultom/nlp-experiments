@@ -84,7 +84,7 @@ def evaluate(train_file_path, test_num, tagger, output_file_path):
         words = []
         for t in tagged:
             words.append(t[0] + '_' + t[1])
-        output.write('\t'.join(words))
+        output.write('\t'.join(words) + '\n')
         bar.next()
     bar.finish()
     output.close()

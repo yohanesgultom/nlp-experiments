@@ -5,7 +5,9 @@ import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.PlainTextByLineStream;
 import opennlp.tools.util.Span;
 import opennlp.tools.util.TrainingParameters;
+import opennlp.tools.util.eval.FMeasure;
 import opennlp.tools.util.featuregen.*;
+import opennlp.tools.util.model.ArtifactProvider;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
@@ -53,6 +55,11 @@ public class Recognizer {
         ObjectStream<NameSample> sampleStream = new NameSampleDataStream(lineStream);
         TokenNameFinderModel newModel = NameFinderME.train(lang, name, sampleStream, Collections.<String, Object>emptyMap());
         this.setModel(newModel);
+
+//        TokenNameFinderEvaluator evaluator = new TokenNameFinderEvaluator(new NameFinderME(this.model));
+//        evaluator.evaluate(new NameSampleDataStream(lineStream));
+//        FMeasure result = evaluator.getFMeasure();
+//        System.out.println(result.toString());
     }
 
     private void train1(String trainFilepath, String lang, String name) throws Exception {
@@ -60,12 +67,12 @@ public class Recognizer {
         ObjectStream<NameSample> sampleStream = new NameSampleDataStream(lineStream);
         AdaptiveFeatureGenerator featureGenerator = new CachedFeatureGenerator(
             new AdaptiveFeatureGenerator[]{
-                    new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
-                    new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
-                    new OutcomePriorFeatureGenerator(),
-                    new PreviousMapFeatureGenerator(),
+//                    new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+//                    new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
+//                    new OutcomePriorFeatureGenerator(),
+//                    new PreviousMapFeatureGenerator(),
                     new BigramNameFeatureGenerator(),
-                    new SentenceFeatureGenerator(true, false)
+//                    new SentenceFeatureGenerator(true, false)
             }
         );
         TokenNameFinderModel newModel = NameFinderME.train(lang, name, sampleStream, TrainingParameters.defaultParams(), featureGenerator, Collections.<String, Object>emptyMap());
@@ -91,12 +98,16 @@ public class Recognizer {
         while ((line = br.readLine()) != null) {
             if (StringUtils.isNotEmpty(line)) {
                 line = line.split("\t")[0];
-                line = StringUtils.replace(line, "<ENAMEX TYPE=\"PERSON\">", "<START:person> ");
-                line = StringUtils.replace(line, "<ENAMEX TYPE=\"ORGANIZATION\">", "<START:organization> ");
-                line = StringUtils.replace(line, "<ENAMEX TYPE=\"LOCATION\">", "<START:location> ");
-                line = StringUtils.replace(line, "</ENAMEX>", " <END>");
-                line = StringUtils.replace(line, ",", "");
-                line = StringUtils.replace(line, "\"", "");
+                line = StringUtils.replace(line, "<ENAMEX TYPE=\"PERSON\">", " <START:person> ");
+                line = StringUtils.replace(line, "<ENAMEX TYPE=\"ORGANIZATION\">", " <START:organization> ");
+                line = StringUtils.replace(line, "<ENAMEX TYPE=\"LOCATION\">", " <START:location> ");
+                line = StringUtils.replace(line, "</ENAMEX>", " <END> ");
+//                line = StringUtils.replace(line, ",", "");
+//                line = StringUtils.replace(line, "\"", "");
+//                line = StringUtils.replace(line, "(", "");
+//                line = StringUtils.replace(line, ")", "");
+//                line = StringUtils.replace(line, "-", " ");
+//                line = StringUtils.replace(line, "/", " ");
                 bw.write(line.trim() + "\n");
             }
         }
@@ -123,7 +134,13 @@ public class Recognizer {
 
     public static void main(String[] args) {
         String trainFilepath = (args.length >= 1) ? args[0] : "train.txt";
-        String sentence[] = new String[]{"Samsung", "mendarat", "di", "Bandara", "Halim", "." };
+        int trainType = 0;
+        try {
+            trainType = (args.length >= 2) ? Integer.parseInt(args[1]) : 0;
+        } catch (Exception e) {
+            trainType = 0;
+        }
+        String sentence[] = new String[]{"Jokowi", "mendarat", "di", "Bandara", "Halim", "." };
         ObjectStream<String> lineStream = null;
         ObjectStream<NameSample> sampleStream = null;
         try {
@@ -132,7 +149,7 @@ public class Recognizer {
             String convertedTrainFilepath = trainDir + trainName + ".train" ;
             Recognizer.convertTrainFile(trainFilepath, convertedTrainFilepath);
 
-            Recognizer recognizer = new Recognizer(convertedTrainFilepath, "id", "news.id", 1);
+            Recognizer recognizer = new Recognizer(convertedTrainFilepath, "id", "news.id", trainType);
             Span[] nameSpans = recognizer.find(sentence);
             System.out.println(Recognizer.spansToList(nameSpans, sentence));
 

@@ -9,9 +9,10 @@ import opennlp.tools.util.TrainingParameters;
 import opennlp.tools.util.eval.FMeasure;
 import opennlp.tools.util.featuregen.*;
 import org.apache.commons.lang3.StringUtils;
+import yohanes.nlp.tools.util.FMeasureMUC;
+import yohanes.nlp.tools.util.TokenNameFinderEvaluatorMUC;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,17 +25,12 @@ public class Recognizer {
 
     private static final String DEFAULT_MODEL_FILE = "train.id.model";
     private static final String MODEL_1_FILE= "train.id.model";
+    // TODO add predefined model file
 
     private TokenNameFinderModel model;
     private NameFinderME nameFinder;
-
-    public Recognizer() throws Exception {
-        InputStream modelIn = this.getClass().getResourceAsStream(DEFAULT_MODEL_FILE);
-        TokenNameFinderModel newModel = new TokenNameFinderModel(modelIn);
-        this.model = newModel;
-        this.nameFinder = new NameFinderME(this.model);
-        modelIn.close();
-    }
+    private TokenNameFinderEvaluator evaluatorExactMatch;
+    private TokenNameFinderEvaluatorMUC evaluatorMUC;
 
     public Recognizer(int scenario) throws Exception {
         InputStream modelIn;
@@ -42,23 +38,28 @@ public class Recognizer {
             case 1:
                 modelIn = this.getClass().getResourceAsStream(MODEL_1_FILE);
                 break;
+            // TODO add more scenarios
             default:
                 modelIn = this.getClass().getResourceAsStream(DEFAULT_MODEL_FILE);
         }
         TokenNameFinderModel newModel = new TokenNameFinderModel(modelIn);
         this.model = newModel;
         this.nameFinder = new NameFinderME(this.model);
+        this.evaluatorExactMatch = new TokenNameFinderEvaluator(this.nameFinder);
+        this.evaluatorMUC = new TokenNameFinderEvaluatorMUC(this.nameFinder);
         modelIn.close();
     }
 
-
-    public Recognizer(String trainFilepath, String lang, String name, int type, String modelOutPath) throws Exception {
+    public Recognizer(String trainFilepath, String lang, String name, int type) throws Exception {
+        String modelOutPath;
         switch (type) {
             case 1:
                 this.train1(trainFilepath, lang, name);
+                modelOutPath = MODEL_1_FILE;
                 break;
             default:
                 this.train(trainFilepath, lang, name);
+                modelOutPath = MODEL_1_FILE;
         }
         // save model
         if (StringUtils.isNotEmpty(modelOutPath)) {
@@ -72,6 +73,8 @@ public class Recognizer {
         this.model = newModel;
         if (this.nameFinder == null || !this.model.equals(newModel)) {
             this.nameFinder = new NameFinderME(this.model);
+            this.evaluatorExactMatch = new TokenNameFinderEvaluator(this.nameFinder);
+            this.evaluatorMUC = new TokenNameFinderEvaluatorMUC(this.nameFinder);
         }
     }
 
@@ -83,7 +86,6 @@ public class Recognizer {
         sampleStream.close();
         lineStream.close();
     }
-
 
     private void train1(String trainFilepath, String lang, String name) throws Exception {
         ObjectStream<String> lineStream = new PlainTextByLineStream(new FileInputStream(trainFilepath), Charset.forName("UTF-8"));
@@ -138,13 +140,20 @@ public class Recognizer {
         if (bw != null) bw.close();
     }
 
-    public FMeasure evaluateDefault(String testFilePath) throws IOException {
-        TokenNameFinderEvaluator evaluator = new TokenNameFinderEvaluator(this.nameFinder);
+    public FMeasure evaluateExactMatch(String testFilePath) throws IOException {
         ObjectStream<String> lineStream = new PlainTextByLineStream(new FileInputStream(testFilePath), Charset.forName("UTF-8"));
         ObjectStream<NameSample> sampleStream = new NameSampleDataStream(lineStream);
-        evaluator.evaluate(sampleStream);
-        return evaluator.getFMeasure();
+        evaluatorExactMatch.evaluate(sampleStream);
+        return evaluatorExactMatch.getFMeasure();
     }
+
+    public FMeasureMUC evaluateMUC(String testFilePath) throws IOException {
+        ObjectStream<String> lineStream = new PlainTextByLineStream(new FileInputStream(testFilePath), Charset.forName("UTF-8"));
+        ObjectStream<NameSample> sampleStream = new NameSampleDataStream(lineStream);
+        evaluatorMUC.evaluate(sampleStream);
+        return evaluatorMUC.getFMeasure();
+    }
+
 
     public static void convertTrainFile(String inputFilePath, String outFilePath) throws Exception {
         Recognizer.convertTrainFile(inputFilePath, outFilePath, null, 0f);
@@ -265,11 +274,10 @@ public class Recognizer {
             String trainDir = trainFilepath.substring(0, trainFilepath.lastIndexOf(File.separator) + 1);
             String trainName = trainFilepath.substring(trainFilepath.lastIndexOf(File.separator) + 1, trainFilepath.lastIndexOf("."));
             String convertedTrainFilepath = trainDir + trainName + ".train" ;
-            String modelFilepath = trainDir + modelName ;
             Recognizer.convertTrainFile(trainFilepath, convertedTrainFilepath);
 
-            Recognizer recognizer = new Recognizer(convertedTrainFilepath, "id", modelName, trainType, modelFilepath);
-            FMeasure f1 = recognizer.evaluateDefault(convertedTrainFilepath);
+            Recognizer recognizer = new Recognizer(convertedTrainFilepath, "id", modelName, trainType);
+            FMeasure f1 = recognizer.evaluateExactMatch(convertedTrainFilepath);
             System.out.println(f1);
             Span[] nameSpans = recognizer.find(sentence);
             System.out.println(Recognizer.spansToList(nameSpans, sentence));

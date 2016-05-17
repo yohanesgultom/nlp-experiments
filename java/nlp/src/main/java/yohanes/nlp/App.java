@@ -96,18 +96,23 @@ public class App
                     String testFileConverted = trainFile + ".test";
                     String[] proportion = args[4].split(":");
                     scenario = Integer.parseInt(args[5]);
-                    String modelPath = (args.length >= 7) ? args[6] : null;
+                    int evalType = (args.length >= 7) ? Integer.parseInt(args[6]) : 0;
                     // split train file for cross-validation
                     int trainNumber = Integer.parseInt(proportion[0]);
                     int testNumber = Integer.parseInt(proportion[1]);
                     float proportionFrac = trainNumber / (float) (trainNumber + testNumber);
                     Recognizer.convertTrainFile(trainFile, trainFileConverted, testFileConverted, proportionFrac);
-                    recognizer = new Recognizer(trainFileConverted, lang, name, scenario, modelPath);
+                    recognizer = new Recognizer(trainFileConverted, lang, name, scenario);
                     System.out.println();
-                    System.out.println(recognizer.evaluateDefault(testFileConverted));
-                } else if (args.length == 3) {
+                    if (evalType == 1) {
+                        System.out.println(recognizer.evaluateMUC(testFileConverted));
+                    } else {
+                        System.out.println(recognizer.evaluateExactMatch(testFileConverted));
+                    }
+                } else if (args.length >= 3) {
                     String testFile = args[1];
                     scenario = Integer.parseInt(args[2]);
+                    String modelPath = (args.length >= 4) ? args[3] : null;
                     recognizer = new Recognizer(scenario);
                     recognizer.find(testFile, App.getFileDir(testFile) + "output.txt");
                 } else {

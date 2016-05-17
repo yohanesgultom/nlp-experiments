@@ -2,6 +2,7 @@ package yohanes.nlp;
 
 import opennlp.tools.cmdline.parser.ParserTool;
 import opennlp.tools.parser.Parse;
+import yohanes.nlp.tools.util.Tree;
 
 import java.io.*;
 

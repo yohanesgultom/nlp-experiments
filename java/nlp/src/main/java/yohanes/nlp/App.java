@@ -103,6 +103,7 @@ public class App
                     float proportionFrac = trainNumber / (float) (trainNumber + testNumber);
                     Recognizer.convertTrainFile(trainFile, trainFileConverted, testFileConverted, proportionFrac);
                     recognizer = new Recognizer(trainFileConverted, lang, name, scenario, modelPath);
+                    System.out.println();
                     System.out.println(recognizer.evaluateDefault(testFileConverted));
                 } else if (args.length == 3) {
                     String testFile = args[1];

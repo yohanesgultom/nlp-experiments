@@ -91,6 +91,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <outputDirectory>dist</outputDirectory>
                     <finalName>yohanes.nlp</finalName>
                     <descriptor>bin.xml</descriptor>
                 </configuration>

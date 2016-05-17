@@ -1,6 +1,6 @@
 # Read Me (dist)
 
-This is a Read Me file for zip distribution downloadble from [here](https://github.com/yohanesgultom/nlp-experiments/blob/master/java/nlp/dist/yohanes.nlp-dist.zip). Assuming you have downloaded the zip and extract it, go inside the folder to `bin` subdirectory to run commands below.
+This is a Read Me file for zip distribution downloadable from [here](https://github.com/yohanesgultom/nlp-experiments/blob/master/java/nlp/dist/yohanes.nlp-dist.zip). Assuming you have downloaded the zip and extract it, go inside the folder to `bin` subdirectory to run commands below.
 
 > Commands below are for Unix system. For (so-non-programmer-like) Windows system please use `nlp.bat` instead of `./nlp`
 

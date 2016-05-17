@@ -20,12 +20,12 @@ To do cross-validation evaluation, provide language code (Id = indonesian), same
 
 Usage:
 ```
-$ nlp ner  -eval [language code] [raw text file for NER] [train data:test data] scenario
+$ nlp ner -eval [language code] [raw text file for NER] [train data:test data] scenario
 ```
 
 Example:
 ```
-$ nlp ner  -eval id /home/yohanesgultom/Workspace/nlp-experiments/data/ner/training_data.txt 9:1 0
+$ nlp ner -eval id /home/yohanesgultom/Workspace/nlp-experiments/data/ner/training_data.txt 9:1 0
 ```
 
 ## POS Tagger

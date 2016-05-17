@@ -6,6 +6,14 @@ import java.util.Date;
 
 public class App
 {
+    public static String getFileDir(String filePath) {
+        return filePath.substring(0, filePath.lastIndexOf(File.separator) + 1);
+    }
+
+    public static String getFileName(String filePath) {
+        return filePath.substring(filePath.lastIndexOf(File.separator) + 1, filePath.lastIndexOf("."));
+    }
+
     private static void POSTaggingWithDataSplit(Tagger tagger, String rawTrainFile, String proportion) throws Exception {
         String[] proportions = proportion.split(":");
         int train =  Integer.parseInt(proportions[0]);
@@ -43,13 +51,15 @@ public class App
 
     public static void printUsageGuide() {
         System.out.println();
-        System.out.println("Usage");
-        System.out.println("nlp pos-tag [train_file] [test_file]");
-        System.out.println("nlp pos-tag -split [train:test] [train_file]");
+        System.out.println("Usage:");
+        System.out.println("$ nlp pos-tag [train_file] [test_file]");
+        System.out.println("$ nlp pos-tag -split [train:test] [train_file]");
+        System.out.println("$ nlp ner [raw text file for NER] [scenario]");
         System.out.println();
-        System.out.println("Example");
-        System.out.println("nlp pos-tag -split 9:1 Indonesian_Manually_Tagged_Corpus_ID.tsv");
-        System.out.println("nlp pos-tag Indonesian_Manually_Tagged_Corpus_ID.tsv Wikipedia.txt");
+        System.out.println("Example:");
+        System.out.println("$ nlp pos-tag -split 9:1 Indonesian_Manually_Tagged_Corpus_ID.tsv");
+        System.out.println("$ nlp pos-tag Indonesian_Manually_Tagged_Corpus_ID.tsv Wikipedia.txt");
+        System.out.println("$ nlp ner training_data.clean 1");
         System.out.println();
     }
 
@@ -73,11 +83,24 @@ public class App
                     printUsageGuide();
                     System.exit(-1);
                 }
+            } else if ("ner".equalsIgnoreCase(task)) {
+                Recognizer recognizer;
+                if (args.length == 3) {
+                    String testFile = args[1];
+                    int scenario = Integer.parseInt(args[2]);
+                    recognizer = new Recognizer(scenario);
+                    recognizer.find(testFile, App.getFileDir(testFile) + "output.txt");
+                } else {
+                    printUsageGuide();
+                    System.exit(-1);
+                }
             } else {
                 printUsageGuide();
                 System.exit(-1);
             }
         } catch (Exception e) {
+            System.err.println("Invalid input!");
+            System.err.println("");
             e.printStackTrace();
             System.exit(-1);
         }

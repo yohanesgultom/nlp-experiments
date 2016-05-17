@@ -50,7 +50,7 @@ public class TaggerTest {
         }
     }
 
-    @Test
+//    @Test
     public void test03TrainPOSTaggerModel() {
         try {
             String trainFilePath = dir + trainFile;
@@ -62,7 +62,7 @@ public class TaggerTest {
         }
     }
 
-    @Test
+//    @Test
     public void test04TagPOS() {
         try {
             String modelFilePath = dir + modelFile;

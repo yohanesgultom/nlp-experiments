@@ -37,17 +37,6 @@ Building program:
 $ cd java/nlp
 $ mvn -Dmaven.test.skip=true package
 ```
+Binary distribution can be downloaded [here](https://github.com/yohanesgultom/nlp-experiments/blob/master/java/nlp/dist/yohanes.nlp-dist.zip)
 
-### POS Tagging
-
-POS tagging with predefined training and test data:
-```
-$ cd java/nlp
-$ sh target/appassembler/bin/nlp pos-tag ../../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv ../../data/pos-tagging/Wikipedia.txt
-```
-
-POS tagging by splitting training data to training and test data:
-```
-$ cd java/nlp
-$ sh target/appassembler/bin/nlp pos-tag -split 9:1 ../../data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv
-```
+Please find usage information in the [README](https://github.com/yohanesgultom/nlp-experiments/blob/master/java/nlp/README.dist.md)

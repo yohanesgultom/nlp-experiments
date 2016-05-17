@@ -50,17 +50,18 @@ public class App
     }
 
     public static void printUsageGuide() {
-        System.out.println();
-        System.out.println("Usage:");
-        System.out.println("$ nlp pos-tag [train_file] [test_file]");
-        System.out.println("$ nlp pos-tag -split [train:test] [train_file]");
-        System.out.println("$ nlp ner [raw text file for NER] [scenario]");
-        System.out.println();
-        System.out.println("Example:");
-        System.out.println("$ nlp pos-tag -split 9:1 Indonesian_Manually_Tagged_Corpus_ID.tsv");
-        System.out.println("$ nlp pos-tag Indonesian_Manually_Tagged_Corpus_ID.tsv Wikipedia.txt");
-        System.out.println("$ nlp ner training_data.clean 1");
-        System.out.println();
+        System.out.println("Invalid usage. Please check the README file");
+//        System.out.println();
+//        System.out.println("Usage:");
+//        System.out.println("$ nlp pos-tag [train_file] [test_file]");
+//        System.out.println("$ nlp pos-tag -split [train:test] [train_file]");
+//        System.out.println("$ nlp ner [raw text file for NER] [scenario]");
+//        System.out.println();
+//        System.out.println("Example:");
+//        System.out.println("$ nlp pos-tag -split 9:1 Indonesian_Manually_Tagged_Corpus_ID.tsv");
+//        System.out.println("$ nlp pos-tag Indonesian_Manually_Tagged_Corpus_ID.tsv Wikipedia.txt");
+//        System.out.println("$ nlp ner training_data.clean 1");
+//        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -85,9 +86,27 @@ public class App
                 }
             } else if ("ner".equalsIgnoreCase(task)) {
                 Recognizer recognizer;
-                if (args.length == 3) {
+                int scenario = 0;
+                String option = args[1];
+                if ("-eval".equalsIgnoreCase(option)) {
+                    String lang = args[2];
+                    String name = "model." + lang;
+                    String trainFile = args[3];
+                    String trainFileConverted = trainFile + ".train";
+                    String testFileConverted = trainFile + ".test";
+                    String[] proportion = args[4].split(":");
+                    scenario = Integer.parseInt(args[5]);
+                    String modelPath = (args.length >= 7) ? args[6] : null;
+                    // split train file for cross-validation
+                    int trainNumber = Integer.parseInt(proportion[0]);
+                    int testNumber = Integer.parseInt(proportion[1]);
+                    float proportionFrac = trainNumber / (float) (trainNumber + testNumber);
+                    Recognizer.convertTrainFile(trainFile, trainFileConverted, testFileConverted, proportionFrac);
+                    recognizer = new Recognizer(trainFileConverted, lang, name, scenario, modelPath);
+                    System.out.println(recognizer.evaluateDefault(testFileConverted));
+                } else if (args.length == 3) {
                     String testFile = args[1];
-                    int scenario = Integer.parseInt(args[2]);
+                    scenario = Integer.parseInt(args[2]);
                     recognizer = new Recognizer(scenario);
                     recognizer.find(testFile, App.getFileDir(testFile) + "output.txt");
                 } else {

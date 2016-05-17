@@ -147,17 +147,21 @@ public class Recognizer {
     }
 
     public static void convertTrainFile(String inputFilePath, String outFilePath) throws Exception {
-        File outTrainFile = new File(outFilePath);
+        Recognizer.convertTrainFile(inputFilePath, outFilePath, null, 0f);
+    }
+
+    public static void convertTrainFile(String inputFilePath, String outTrainFilePath, String outTestFilePath, float proportionFrac) throws Exception {
+        File outTrainFile = new File(outTrainFilePath);
         // if file does not exists, then create it
         if (!outTrainFile.exists()) {
             outTrainFile.createNewFile();
         }
 
-        // write to files
+        // read files
         BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
-        BufferedWriter bw = new BufferedWriter(new FileWriter(outTrainFile.getAbsoluteFile()));
 
         String line;
+        List<String> lines = new ArrayList<String>();
         while ((line = br.readLine()) != null) {
             if (StringUtils.isNotEmpty(line)) {
                 line = line.split("\t")[0];
@@ -171,12 +175,34 @@ public class Recognizer {
 //                line = StringUtils.replace(line, ")", "");
 //                line = StringUtils.replace(line, "-", " ");
 //                line = StringUtils.replace(line, "/", " ");
-                bw.write(line.trim() + "\n");
+                lines.add(line.trim() + "\n");
             }
         }
-
-        if (bw != null) bw.close();
         if (br != null) br.close();
+
+        // splitting train file
+        BufferedWriter bwTrain = new BufferedWriter(new FileWriter(outTrainFile.getAbsoluteFile()));
+        if (proportionFrac > 0f && StringUtils.isNotEmpty(outTestFilePath)) {
+            File outTestFile = new File(outTestFilePath);
+            if (!outTestFile.exists()) {
+                outTestFile.createNewFile();
+            }
+            BufferedWriter bwTest = new BufferedWriter(new FileWriter(outTestFile.getAbsoluteFile()));
+            int limit = Math.round(lines.size() * proportionFrac);
+            for (int i = 0; i < lines.size(); i++) {
+                if (i < limit) {
+                    bwTrain.write(lines.get(i));
+                } else {
+                    bwTest.write(lines.get(i));
+                }
+            }
+            if (bwTest != null) bwTest.close();
+        } else {
+            for (String l:lines) {
+                bwTrain.write(l);
+            }
+        }
+        if (bwTrain != null) bwTrain.close();
 
     }
 

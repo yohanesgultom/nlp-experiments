@@ -4,7 +4,7 @@ This is a Read Me file for appassembler (zip) distribution. Assuming you have do
 
 ## Name Entity Recognizer
 
-Annotate a raw text file containing Indonesian sentences separated by newline. See [training_data.clean](https://github.com/yohanesgultom/nlp-experiments/blob/master/data/ner/training_data.clean) as example. The output will be [output.txt](https://github.com/yohanesgultom/nlp-experiments/blob/master/data/ner/output.txt) (in the same folder). While scenario is an integer value representing index of scenario (use 1 for default scenario)
+Provide an MUC annotated text file containing Indonesian such as [training_data.clean](https://github.com/yohanesgultom/nlp-experiments/blob/master/data/ner/training_data.clean) as example. The output will be [output.txt](https://github.com/yohanesgultom/nlp-experiments/blob/master/data/ner/output.txt) (in the same folder) and scenario id, an integer value representing index of scenario (use 1 for default scenario)
 
 Usage:
 ```
@@ -15,6 +15,19 @@ Example:
 ```
 $ nlp ner training_data.clean 1
 ```
+
+To do cross-validation evaluation, provide language code (Id = indonesian), same MUC annotated text file, proportion of training data & test data sentences and finally the scenario id
+
+Usage:
+```
+$ nlp ner  -eval [language code] [raw text file for NER] [train data:test data] scenario
+```
+
+Example:
+```
+$ nlp ner  -eval id /home/yohanesgultom/Workspace/nlp-experiments/data/ner/training_data.txt 9:1 0
+```
+
 ## POS Tagger
 
 Train POS tagger using [train_file](https://github.com/yohanesgultom/nlp-experiments/blob/master/data/pos-tagging/Indonesian_Manually_Tagged_Corpus_ID.tsv) and run a test by tagging a [test_file](https://github.com/yohanesgultom/nlp-experiments/blob/master/data/pos-tagging/Wikipedia.txt). The result will be created in the same directory.

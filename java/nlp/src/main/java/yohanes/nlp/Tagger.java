@@ -8,24 +8,44 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Tagger {
-    private static final String XML_TAG_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";
 
-    private Pattern pattern;
-    private Matcher matcher;
+    private static final Pattern TAG_PATTERN = Pattern.compile("<(\"[^\"]*\"|'[^']*'|[^'\">])*>");
+    private POSTaggerME tagger;
 
-    public Tagger() {
-        pattern = Pattern.compile(XML_TAG_PATTERN);
+    public Tagger(String lang, String trainFile, String modelFile) throws Exception {
+        InputStreamFactory isf = new MarkableFileInputStreamFactory(new File(trainFile));
+        ObjectStream<String> lineStream = new PlainTextByLineStream(isf, "UTF-8");
+        ObjectStream<POSSample> sampleStream = new WordTagSampleStream(lineStream);
+        POSModel model = POSTaggerME.train(lang, sampleStream, TrainingParameters.defaultParams(), new POSTaggerFactory());
+        this.tagger = new POSTaggerME(model);
+
+        // if file doesnt exists, then create it
+        File outFile = new File(modelFile);
+        if (!outFile.exists()) {
+            outFile.createNewFile();
+        }
+        OutputStream modelOut = new BufferedOutputStream(new FileOutputStream(modelFile));
+        model.serialize(modelOut);
+
+        // close streams
+        lineStream.close();
+        modelOut.close();
     }
 
-    public String convertTrainString(String line, boolean firstWord) {
+    public Tagger(InputStream modelIn) throws Exception {
+        POSModel model = new POSModel(modelIn);
+        this.tagger = new POSTaggerME(model);
+    }
+
+
+    public static String convertTrainString(String line, boolean firstWord) {
         String toWrite = null;
-        matcher = pattern.matcher(line);
+        Matcher matcher = TAG_PATTERN.matcher(line);
         if (!matcher.matches()) {
             // read the word if it's not an xml tag
             // replace tab with underscore
@@ -51,7 +71,7 @@ public class Tagger {
         return toWrite;
     }
 
-    public void convertTrainFile(String rawTrainFile, String trainFile) throws IOException {
+    public static void convertTrainFile(String rawTrainFile, String trainFile) throws IOException {
         BufferedReader br = null;
         String line;
         br = new BufferedReader(new FileReader(rawTrainFile));
@@ -67,7 +87,7 @@ public class Tagger {
 
         int count = 0;
         while ((line = br.readLine()) != null) {
-            String toWrite = this.convertTrainString(line.trim(), count == 0);
+            String toWrite = convertTrainString(line.trim(), count == 0);
             if (toWrite != null) {
                 bw.write(toWrite);
                 count++;
@@ -79,7 +99,7 @@ public class Tagger {
         if (bw != null) bw.close();
     }
 
-    public void convertAndSplitTrainFile(String rawTrainFile, String trainFile, String testFile, String testFileVerify, float trainProportion) throws Exception {
+    public static void convertAndSplitTrainFile(String rawTrainFile, String trainFile, String testFile, String testFileVerify, float trainProportion) throws Exception {
         BufferedReader br = null;
         String line;
         br = new BufferedReader(new FileReader(rawTrainFile));
@@ -88,7 +108,7 @@ public class Tagger {
         ArrayList<String> sentences = new ArrayList<String>();
         String sentence = "";
         while ((line = br.readLine()) != null) {
-            String toWrite = this.convertTrainString(line, count == 0);
+            String toWrite = convertTrainString(line, count == 0);
             if (toWrite != null) {
                 if (toWrite == "\n") {
                     sentences.add(sentence.trim());
@@ -134,7 +154,7 @@ public class Tagger {
                 trainWriter.write(sentences.get(i).trim() + "\n");
                 countTrain++;
             } else {
-                testWriter.write(this.removeTagsFromSentence(sentences.get(i)).trim() + "\n");
+                testWriter.write(removeTagsFromSentence(sentences.get(i)).trim() + "\n");
                 testWriterVerify.write(sentences.get(i).trim() + "\n");
             }
         }
@@ -145,28 +165,38 @@ public class Tagger {
         if (testWriterVerify != null) testWriterVerify.close();
     }
 
-    public void trainPOSTaggerModel(String trainFile, String modelFile) throws IOException {
-        InputStreamFactory isf = new MarkableFileInputStreamFactory(new File(trainFile));
-        ObjectStream<String> lineStream = new PlainTextByLineStream(isf, "UTF-8");
-        ObjectStream<POSSample> sampleStream = new WordTagSampleStream(lineStream);
-        POSModel model = POSTaggerME.train("id", sampleStream, TrainingParameters.defaultParams(), new POSTaggerFactory());
+//    public void trainPOSTaggerModel(String trainFile, String modelFile) throws IOException {
+//        InputStreamFactory isf = new MarkableFileInputStreamFactory(new File(trainFile));
+//        ObjectStream<String> lineStream = new PlainTextByLineStream(isf, "UTF-8");
+//        ObjectStream<POSSample> sampleStream = new WordTagSampleStream(lineStream);
+//        POSModel model = POSTaggerME.train("id", sampleStream, TrainingParameters.defaultParams(), new POSTaggerFactory());
+//
+//        // if file doesnt exists, then create it
+//        File outFile = new File(modelFile);
+//        if (!outFile.exists()) {
+//            outFile.createNewFile();
+//        }
+//        OutputStream modelOut = new BufferedOutputStream(new FileOutputStream(modelFile));
+//        model.serialize(modelOut);
+//
+//        // close streams
+//        lineStream.close();
+//        modelOut.close();
+//    }
 
-        // if file doesnt exists, then create it
-        File outFile = new File(modelFile);
-        if (!outFile.exists()) {
-            outFile.createNewFile();
+    private static String removeTagsFromSentence(String sentence) throws Exception {
+        String res = "";
+        String[] words = sentence.split(" ");
+        for (String w:words) {
+            if (StringUtils.isNotEmpty(res)) res += " ";
+            res += w.split("_")[0];
         }
-        OutputStream modelOut = new BufferedOutputStream(new FileOutputStream(modelFile));
-        model.serialize(modelOut);
-
-        // close streams
-        lineStream.close();
-        modelOut.close();
+        return res;
     }
 
-    public String tagPOS(Tokenizer tokenizer, POSTaggerME tagger, String line) {
+    public String tagPOS(Tokenizer tokenizer, String line) {
         StringBuilder sb = new StringBuilder();
-        if (line != null && !line.isEmpty()) {
+        if (line != null && StringUtils.isNotEmpty(line)) {
             String[] words = (tokenizer != null) ? tokenizer.tokenize(line) : line.split(" ");
             String[] tags = tagger.tag(words);
             // match words and tags and write it to output
@@ -179,24 +209,12 @@ public class Tagger {
         return sb.toString();
     }
 
-    private String removeTagsFromSentence(String sentence) throws Exception {
-        String res = "";
-        String[] words = sentence.split(" ");
-        for (String w:words) {
-            if (!res.isEmpty()) res += " ";
-            res += w.split("_")[0];
-        }
-        return res;
+    public String[] tagPOS(String[] tokens) {
+        return tagger.tag(tokens);
     }
 
-    public void tagPOS(String modelFile, String testFile, String resultFile, boolean fromTrainData) throws IOException {
+    public void tagPOS(String testFile, String resultFile, boolean fromTrainData) throws IOException {
         String line;
-
-        // init POS tagger with model
-        InputStream modelIn = new FileInputStream(modelFile);
-        POSModel model = new POSModel(modelIn);
-        POSTaggerME taggerME = new POSTaggerME(model);
-
         // if file doesnt exists, then create it
         File outFile = new File(resultFile);
         if (!outFile.exists()) {
@@ -207,8 +225,8 @@ public class Tagger {
 
         BufferedReader br = new BufferedReader(new FileReader(testFile));
         while ((line = br.readLine()) != null) {
-            String tagged = (fromTrainData) ? this.tagPOS(null, taggerME, line) : this.tagPOS(SimpleTokenizer.INSTANCE, taggerME, line);
-            if (tagged != null && !tagged.isEmpty()) {
+            String tagged = (fromTrainData) ? this.tagPOS(null, line) : this.tagPOS(SimpleTokenizer.INSTANCE, line);
+            if (tagged != null && StringUtils.isNotEmpty(tagged)) {
                 bw.write(tagged);
             }
         }
@@ -225,13 +243,13 @@ public class Tagger {
 
         ArrayList<String> taggedSentences = new ArrayList<String>();
         ArrayList<String> verifySentences = new ArrayList<String>();
-        while ((line = taggedReader.readLine()) != null) if (!line.isEmpty()) taggedSentences.add(line);
-        while ((line = verifyReader.readLine()) != null) if (!line.isEmpty()) verifySentences.add(line);
+        while ((line = taggedReader.readLine()) != null) if (StringUtils.isNotEmpty(line)) taggedSentences.add(line);
+        while ((line = verifyReader.readLine()) != null) if (StringUtils.isNotEmpty(line)) verifySentences.add(line);
 
         int correct = 0;
         int total = 0;
         for (int i = 0; i < taggedSentences.size(); i++) {
-            if (!taggedSentences.get(i).isEmpty()) {
+            if (StringUtils.isNotEmpty(taggedSentences.get(i))) {
                 String[] taggedArray = taggedSentences.get(i).split(" ");
                 String[] verifyArray = verifySentences.get(i).split(" ");
                 for (int j = 0; j < taggedArray.length; j++) {

@@ -14,7 +14,7 @@ public class App
         return filePath.substring(filePath.lastIndexOf(File.separator) + 1, filePath.lastIndexOf("."));
     }
 
-    private static void POSTaggingWithDataSplit(Tagger tagger, String rawTrainFile, String proportion) throws Exception {
+    private static void POSTaggingWithDataSplit(String rawTrainFile, String proportion) throws Exception {
         String[] proportions = proportion.split(":");
         int train =  Integer.parseInt(proportions[0]);
         int test =  Integer.parseInt(proportions[1]);
@@ -27,15 +27,15 @@ public class App
         String modelFile = rawTrainDir + rawTrainName + ".opennlp.split.model";
 //        String resultFile = rawTrainDir + rawTrainName + ".opennlp.split.test.tagged";
         String resultFile = rawTrainDir + "sentences.tag";
-        tagger.convertAndSplitTrainFile(rawTrainFile, trainFile, testFile, testFileVerify, trainProportion);
-        tagger.trainPOSTaggerModel(trainFile, modelFile);
-        tagger.tagPOS(modelFile, testFile, resultFile, true);
+        Tagger.convertAndSplitTrainFile(rawTrainFile, trainFile, testFile, testFileVerify, trainProportion);
+        Tagger tagger = new Tagger("id", trainFile, modelFile);
+        tagger.tagPOS(testFile, resultFile, true);
         float accuracy = tagger.calculateAccuracy(resultFile, testFileVerify);
         System.out.println("Accuracy: " + accuracy + "%");
         System.out.println("Done");
     }
 
-    private static void POSTagging(Tagger tagger, String rawTrainFile, String testFile) throws IOException {
+    private static void POSTagging(String rawTrainFile, String testFile) throws Exception {
         String rawTrainDir = rawTrainFile.substring(0, rawTrainFile.lastIndexOf(File.separator) + 1);
         String rawTrainName = rawTrainFile.substring(rawTrainFile.lastIndexOf(File.separator) + 1, rawTrainFile.lastIndexOf("."));
         String testDir = testFile.substring(0, testFile.lastIndexOf(File.separator) + 1);
@@ -43,9 +43,9 @@ public class App
         String trainFile = rawTrainDir + rawTrainName + ".opennlp.train";
         String modelFile = rawTrainDir + rawTrainName + ".opennlp.model";
         String resultFile = testDir + testName + ".opennlp.tagged";
-        tagger.convertTrainFile(rawTrainFile, trainFile);
-        tagger.trainPOSTaggerModel(trainFile, modelFile);
-        tagger.tagPOS(modelFile, testFile, resultFile, false);
+        Tagger.convertTrainFile(rawTrainFile, trainFile);
+        Tagger tagger = new Tagger("id", trainFile, modelFile);
+        tagger.tagPOS(testFile, resultFile, false);
         System.out.println("Done");
     }
 
@@ -72,14 +72,13 @@ public class App
             String task = args[0];
             // POS tagging task
             if ("pos-tag".equalsIgnoreCase(task)) {
-                Tagger tagger = new Tagger();
                 // handle proportion
                 if (args.length == 4 && "-split".equalsIgnoreCase(args[1])) {
-                    POSTaggingWithDataSplit(tagger, args[3], args[2]);
+                    POSTaggingWithDataSplit(args[3], args[2]);
                 }
                 // predefined train and test data
                 else if (args.length == 3) {
-                    POSTagging(tagger, args[1], args[2]);
+                    POSTagging(args[1], args[2]);
                 } else {
                     printUsageGuide();
                     System.exit(-1);
@@ -112,7 +111,6 @@ public class App
                 } else if (args.length >= 3) {
                     String testFile = args[1];
                     scenario = Integer.parseInt(args[2]);
-                    String modelPath = (args.length >= 4) ? args[3] : null;
                     recognizer = new Recognizer(scenario);
                     recognizer.find(testFile, App.getFileDir(testFile) + "output.txt");
                 } else {

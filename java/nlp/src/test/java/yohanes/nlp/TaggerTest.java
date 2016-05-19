@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 
 import static org.junit.Assert.*;
@@ -20,7 +21,7 @@ public class TaggerTest {
     static final String testFile = "Wikipedia.txt";
     static final String resultFile = "Wikipedia.tagged";
 
-    private Tagger tagger = new Tagger();
+    private Tagger tagger;
     private String dir;
 
     @Before
@@ -31,11 +32,11 @@ public class TaggerTest {
 
     @Test
     public void test01ConvertTrainString() {
-        assertNull(tagger.convertTrainString("<kalimat id=1>", true));
-        assertNull(tagger.convertTrainString("</kalimat>", true));
-        assertEquals("Apel_NN", tagger.convertTrainString("Apel\tNN", true));
-        assertEquals("Apel_NN Malang_NN", tagger.convertTrainString("Apel Malang\tNN", true));
-        assertEquals(" Apel_NN", tagger.convertTrainString("Apel\tNN", false));
+        assertNull(Tagger.convertTrainString("<kalimat id=1>", true));
+        assertNull(Tagger.convertTrainString("</kalimat>", true));
+        assertEquals("Apel_NN", Tagger.convertTrainString("Apel\tNN", true));
+        assertEquals("Apel_NN Malang_NN", Tagger.convertTrainString("Apel Malang\tNN", true));
+        assertEquals(" Apel_NN", Tagger.convertTrainString("Apel\tNN", false));
     }
 
     @Test
@@ -43,9 +44,10 @@ public class TaggerTest {
         try {
             String rawTrainFilePath = dir + rawTrainFile;
             String trainFilePath = dir + trainFile;
-            tagger.convertTrainFile(rawTrainFilePath, trainFilePath);
+            Tagger.convertTrainFile(rawTrainFilePath, trainFilePath);
             assert true;
         } catch (Exception e) {
+            e.printStackTrace();
             assert false;
         }
     }
@@ -55,9 +57,10 @@ public class TaggerTest {
         try {
             String trainFilePath = dir + trainFile;
             String modelFilePath = dir + modelFile;
-            tagger.trainPOSTaggerModel(trainFilePath, modelFilePath);
+            tagger = new Tagger("id", trainFilePath, modelFilePath);
             assert true;
         } catch (Exception e) {
+            e.printStackTrace();
             assert false;
         }
     }
@@ -68,9 +71,11 @@ public class TaggerTest {
             String modelFilePath = dir + modelFile;
             String testFilePath = dir + testFile;
             String resultFilePath = dir + resultFile;
-            tagger.tagPOS(modelFilePath, testFilePath, resultFilePath, false);
+            tagger = new Tagger(new FileInputStream(modelFilePath));
+            tagger.tagPOS(testFilePath, resultFilePath, false);
             assert true;
         } catch (Exception e) {
+            e.printStackTrace();
             assert false;
         }
     }

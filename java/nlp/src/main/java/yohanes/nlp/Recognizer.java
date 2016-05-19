@@ -1,5 +1,6 @@
 package yohanes.nlp;
 
+import opennlp.tools.dictionary.Dictionary;
 import opennlp.tools.namefind.*;
 import opennlp.tools.tokenize.SimpleTokenizer;
 import opennlp.tools.util.ObjectStream;
@@ -23,9 +24,9 @@ import java.util.List;
  */
 public class Recognizer {
 
-    private static final String DEFAULT_MODEL_FILE = "train.id.model";
-    private static final String MODEL_1_FILE= "train.id.model";
-    // TODO add predefined model file
+    private static final String MODEL_NAME = "train";
+    private static final String MODEL_EXT = "model";
+    private static final String MODEL_LANG = "id";
 
     private TokenNameFinderModel model;
     private NameFinderME nameFinder;
@@ -33,49 +34,109 @@ public class Recognizer {
     private TokenNameFinderEvaluatorMUC evaluatorMUC;
 
     public Recognizer(int scenario) throws Exception {
-        InputStream modelIn;
-        switch (scenario) {
-            case 1:
-                modelIn = this.getClass().getResourceAsStream(MODEL_1_FILE);
-                break;
-            // TODO add more scenarios
-            default:
-                modelIn = this.getClass().getResourceAsStream(DEFAULT_MODEL_FILE);
-        }
+        InputStream modelIn = this.getClass().getResourceAsStream(this.getModeFileName(scenario));
         TokenNameFinderModel newModel = new TokenNameFinderModel(modelIn);
         this.model = newModel;
         this.nameFinder = new NameFinderME(this.model);
-        this.evaluatorExactMatch = new TokenNameFinderEvaluator(this.nameFinder);
-        this.evaluatorMUC = new TokenNameFinderEvaluatorMUC(this.nameFinder);
+        this.initEvaluator();
         modelIn.close();
     }
 
-    public Recognizer(String trainFilepath, String lang, String name, int type) throws Exception {
+    public Recognizer(String trainFilepath, String lang, String name, int scenario) throws Exception {
         String modelOutPath;
-        switch (type) {
+        // dicts
+        InputStream organizationIn = this.getClass().getResourceAsStream("organization.dict");
+        InputStream locationIn = this.getClass().getResourceAsStream("location.id.dict");
+        InputStream personIn = this.getClass().getResourceAsStream("person.id.dict");
+        Dictionary organizationDict = new Dictionary(organizationIn);
+        Dictionary locationDict = new Dictionary(locationIn);
+        Dictionary personDict = new Dictionary(personIn);
+        switch (scenario) {
             case 1:
-                this.train1(trainFilepath, lang, name);
-                modelOutPath = MODEL_1_FILE;
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(true), 2, 2),
+                        new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2)
+                });
+                break;
+            case 2:
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(true), 2, 2),
+                        new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
+                        new SentenceFeatureGenerator(true, true)
+                });
+                break;
+            case 3:
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(true), 2, 2),
+                        new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
+                        new SentenceFeatureGenerator(true, true),
+                        new OutcomePriorFeatureGenerator()
+                });
+                break;
+            case 4:
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(true), 2, 2),
+                        new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
+                        new SentenceFeatureGenerator(true, true),
+                        new OutcomePriorFeatureGenerator()
+                });
+                break;
+            case 5:
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+                        new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
+                        new OutcomePriorFeatureGenerator(),
+                        new PreviousMapFeatureGenerator(),
+                        new BigramNameFeatureGenerator(),
+                        new SentenceFeatureGenerator(true, true),
+                });
+                break;
+            case 6:
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new TokenFeatureGenerator(),
+                        new TokenClassFeatureGenerator(true),
+                        new DictionaryFeatureGenerator("organization", organizationDict),
+                        new DictionaryFeatureGenerator("location", locationDict),
+                        new DictionaryFeatureGenerator("person", personDict),
+                });
                 break;
             default:
-                this.train(trainFilepath, lang, name);
-                modelOutPath = MODEL_1_FILE;
+                this.train1(trainFilepath, lang, name, new AdaptiveFeatureGenerator[]{
+                        new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
+                        new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
+                        new OutcomePriorFeatureGenerator(),
+                        new PreviousMapFeatureGenerator(),
+                        new BigramNameFeatureGenerator(),
+                        new SentenceFeatureGenerator(true, false)
+                });
         }
         // save model
-        if (StringUtils.isNotEmpty(modelOutPath)) {
-            BufferedOutputStream modelOut = new BufferedOutputStream(new FileOutputStream(modelOutPath));
-            model.serialize(modelOut);
-            modelOut.close();
-        }
+        modelOutPath = this.getModeFileName(scenario, lang);
+        BufferedOutputStream modelOut = new BufferedOutputStream(new FileOutputStream(modelOutPath));
+        model.serialize(modelOut);
+        modelOut.close();
+
+        // close streams
+        organizationIn.close();
+        locationIn.close();
+        personIn.close();
     }
 
     public void setModel(TokenNameFinderModel newModel) {
         this.model = newModel;
         if (this.nameFinder == null || !this.model.equals(newModel)) {
             this.nameFinder = new NameFinderME(this.model);
-            this.evaluatorExactMatch = new TokenNameFinderEvaluator(this.nameFinder);
-            this.evaluatorMUC = new TokenNameFinderEvaluatorMUC(this.nameFinder);
+            this.initEvaluator();
         }
+    }
+
+    private void initEvaluator() {
+        this.evaluatorExactMatch = new TokenNameFinderEvaluator(this.nameFinder);
+        this.evaluatorMUC = new TokenNameFinderEvaluatorMUC(this.nameFinder, new StdOutMonitor());
     }
 
     private void train(String trainFilepath, String lang, String name) throws Exception {
@@ -87,19 +148,10 @@ public class Recognizer {
         lineStream.close();
     }
 
-    private void train1(String trainFilepath, String lang, String name) throws Exception {
+    private void train1(String trainFilepath, String lang, String name, AdaptiveFeatureGenerator[] adaptiveFeatureGenerators) throws Exception {
         ObjectStream<String> lineStream = new PlainTextByLineStream(new FileInputStream(trainFilepath), Charset.forName("UTF-8"));
         ObjectStream<NameSample> sampleStream = new NameSampleDataStream(lineStream);
-        AdaptiveFeatureGenerator featureGenerator = new CachedFeatureGenerator(
-            new AdaptiveFeatureGenerator[]{
-                    new WindowFeatureGenerator(new TokenFeatureGenerator(), 2, 2),
-                    new WindowFeatureGenerator(new TokenClassFeatureGenerator(true), 2, 2),
-                    new OutcomePriorFeatureGenerator(),
-                    new PreviousMapFeatureGenerator(),
-                    new BigramNameFeatureGenerator(),
-                    new SentenceFeatureGenerator(true, false)
-            }
-        );
+        AdaptiveFeatureGenerator featureGenerator = new CachedFeatureGenerator(adaptiveFeatureGenerators);
         TokenNameFinderModel newModel = NameFinderME.train(lang, name, sampleStream, TrainingParameters.defaultParams(), featureGenerator, Collections.<String, Object>emptyMap());
         this.setModel(newModel);
         sampleStream.close();
@@ -207,7 +259,7 @@ public class Recognizer {
             }
             if (bwTest != null) bwTest.close();
         } else {
-            for (String l:lines) {
+            for (String l : lines) {
                 bwTrain.write(l);
             }
         }
@@ -217,7 +269,7 @@ public class Recognizer {
 
     public static List<String> spansToList(Span[] spans, String[] tokens) {
         ArrayList<String> res = new ArrayList<String>();
-        for (Span sp:spans) {
+        for (Span sp : spans) {
             String text = "";
             for (int i = sp.getStart(); i < sp.getEnd(); i++) {
                 if (i > sp.getStart()) {
@@ -237,7 +289,7 @@ public class Recognizer {
                 res.append(" ");
             }
             boolean found = false;
-            for (Span sp:spans) {
+            for (Span sp : spans) {
                 if (i == sp.getStart()) {
                     res.append("<ENAMEX TYPE=\"").append(sp.getType().toUpperCase()).append("\">");
                 }
@@ -256,42 +308,63 @@ public class Recognizer {
         return res.toString();
     }
 
-    public static void main(String[] args) {
-        String trainFilepath = (args.length >= 1) ? args[0] : "train.txt";
-        int trainType = 0;
-        try {
-            trainType = (args.length >= 2) ? Integer.parseInt(args[1]) : 0;
-        } catch (Exception e) {
-            trainType = 0;
-        }
-
-        String sentence[] = new String[]{"Jokowi", "mendarat", "di", "Bandara", "Halim", "." };
-        String sentenceStr = "Jokowi mendarat di Bandara Halim.";
-        ObjectStream<String> lineStream = null;
-        ObjectStream<NameSample> sampleStream = null;
-        try {
-            String modelName = DEFAULT_MODEL_FILE;
-            String trainDir = trainFilepath.substring(0, trainFilepath.lastIndexOf(File.separator) + 1);
-            String trainName = trainFilepath.substring(trainFilepath.lastIndexOf(File.separator) + 1, trainFilepath.lastIndexOf("."));
-            String convertedTrainFilepath = trainDir + trainName + ".train" ;
-            Recognizer.convertTrainFile(trainFilepath, convertedTrainFilepath);
-
-            Recognizer recognizer = new Recognizer(convertedTrainFilepath, "id", modelName, trainType);
-            FMeasure f1 = recognizer.evaluateExactMatch(convertedTrainFilepath);
-            System.out.println(f1);
-            Span[] nameSpans = recognizer.find(sentence);
-            System.out.println(Recognizer.spansToList(nameSpans, sentence));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (lineStream != null) lineStream.close();
-                if (sampleStream != null) sampleStream.close();
-            } catch (Exception ex) {
-
-            }
-        }
+    private String getModeFileName(int scenario) {
+        return this.getModeFileName(scenario, MODEL_LANG);
     }
 
+    private String getModeFileName(int scenario, String lang) {
+        return StringUtils.join(new String[]{MODEL_NAME, lang, String.valueOf(scenario), MODEL_EXT}, ".");
+    }
+
+//    public static void main(String[] args) {
+//        String trainFilepath = (args.length >= 1) ? args[0] : "train.txt";
+//        int trainType = 0;
+//        try {
+//            trainType = (args.length >= 2) ? Integer.parseInt(args[1]) : 0;
+//        } catch (Exception e) {
+//            trainType = 0;
+//        }
+//
+//        String sentence[] = new String[]{"Jokowi", "mendarat", "di", "Bandara", "Halim", "." };
+//        String sentenceStr = "Jokowi mendarat di Bandara Halim.";
+//        ObjectStream<String> lineStream = null;
+//        ObjectStream<NameSample> sampleStream = null;
+//        try {
+//            String modelName = DEFAULT_MODEL_FILE;
+//            String trainDir = trainFilepath.substring(0, trainFilepath.lastIndexOf(File.separator) + 1);
+//            String trainName = trainFilepath.substring(trainFilepath.lastIndexOf(File.separator) + 1, trainFilepath.lastIndexOf("."));
+//            String convertedTrainFilepath = trainDir + trainName + ".train" ;
+//            Recognizer.convertTrainFile(trainFilepath, convertedTrainFilepath);
+//
+//            Recognizer recognizer = new Recognizer(convertedTrainFilepath, "id", modelName, trainType);
+//            FMeasure f1 = recognizer.evaluateExactMatch(convertedTrainFilepath);
+//            System.out.println(f1);
+//            Span[] nameSpans = recognizer.find(sentence);
+//            System.out.println(Recognizer.spansToList(nameSpans, sentence));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                if (lineStream != null) lineStream.close();
+//                if (sampleStream != null) sampleStream.close();
+//            } catch (Exception ex) {
+//
+//            }
+//        }
+//    }
+
+}
+
+class StdOutMonitor implements TokenNameFinderEvaluationMonitor {
+
+    public void correctlyClassified(NameSample reference, NameSample prediction) {
+        // do nothing
+    }
+
+    public void missclassified(NameSample reference, NameSample prediction) {
+        System.err.println(reference);
+        System.err.println(prediction);
+        System.err.println();
+    }
 }

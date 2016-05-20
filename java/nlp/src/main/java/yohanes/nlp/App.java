@@ -51,17 +51,6 @@ public class App
 
     public static void printUsageGuide() {
         System.out.println("Invalid usage. Please check the README file");
-//        System.out.println();
-//        System.out.println("Usage:");
-//        System.out.println("$ nlp pos-tag [train_file] [test_file]");
-//        System.out.println("$ nlp pos-tag -split [train:test] [train_file]");
-//        System.out.println("$ nlp ner [raw text file for NER] [scenario]");
-//        System.out.println();
-//        System.out.println("Example:");
-//        System.out.println("$ nlp pos-tag -split 9:1 Indonesian_Manually_Tagged_Corpus_ID.tsv");
-//        System.out.println("$ nlp pos-tag Indonesian_Manually_Tagged_Corpus_ID.tsv Wikipedia.txt");
-//        System.out.println("$ nlp ner training_data.clean 1");
-//        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -103,6 +92,18 @@ public class App
                     Recognizer.convertTrainFile(trainFile, trainFileConverted, testFileConverted, proportionFrac);
                     recognizer = new Recognizer(trainFileConverted, lang, name, scenario);
                     System.out.println();
+                    if (evalType == 1) {
+                        System.out.println(recognizer.evaluateMUC(testFileConverted));
+                    } else {
+                        System.out.println(recognizer.evaluateExactMatch(testFileConverted));
+                    }
+                } else if ("-enamex".equalsIgnoreCase(option)) {
+                    String testFileEnamex = args[2];
+                    String testFileConverted = testFileEnamex + ".opennlp";
+                    scenario = Integer.parseInt(args[3]);
+                    int evalType = (args.length >= 5) ? Integer.parseInt(args[4]) : 0;
+                    Recognizer.convertTrainFile(testFileEnamex, testFileConverted);
+                    recognizer = new Recognizer(scenario);
                     if (evalType == 1) {
                         System.out.println(recognizer.evaluateMUC(testFileConverted));
                     } else {

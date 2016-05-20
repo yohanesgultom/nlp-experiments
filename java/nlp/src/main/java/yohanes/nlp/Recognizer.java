@@ -172,7 +172,6 @@ public class Recognizer {
         this.setModel(newModel);
         sampleStream.close();
         lineStream.close();
-        this.initEvaluator(trainFilepath + ".missed");
     }
 
     public Span[] find(String[] tokens) {
@@ -209,12 +208,14 @@ public class Recognizer {
         if (bw != null) bw.close();
     }
 
-    public FMeasure evaluateExactMatch(String testFilePath) throws IOException {
+    public FMeasure evaluateExactMatch(String testFilePath) throws Exception {
+        this.initEvaluator(testFilePath + ".missed");
         evaluatorExactMatch.evaluate(this.getSampleStream(testFilePath));
         return evaluatorExactMatch.getFMeasure();
     }
 
-    public FMeasureMUC evaluateMUC(String testFilePath) throws IOException {
+    public FMeasureMUC evaluateMUC(String testFilePath) throws Exception {
+        this.initEvaluator(testFilePath + ".missed");
         evaluatorMUC.evaluate(this.getSampleStream(testFilePath));
         return evaluatorMUC.getFMeasure();
     }
@@ -223,6 +224,10 @@ public class Recognizer {
         InputStreamFactory isf = new MarkableFileInputStreamFactory(new File(file));
         ObjectStream<String> lineStream = new PlainTextByLineStream(isf, "UTF-8");
         return new NameSampleDataStream(lineStream);
+    }
+
+    public static void convertTrainFile(String inputFilePath, String outTrainFilePath) throws Exception {
+        convertTrainFile(inputFilePath, outTrainFilePath, null, 0f);
     }
 
     public static void convertTrainFile(String inputFilePath, String outTrainFilePath, String outTestFilePath, float proportionFrac) throws Exception {
@@ -258,6 +263,21 @@ public class Recognizer {
             }
             BufferedWriter bwTest = new BufferedWriter(new FileWriter(outTestFile.getAbsoluteFile()));
             int limit = Math.round(lines.size() * proportionFrac);
+
+
+//            // random splitting
+//            int count = 0;
+//            Random randomizer = new Random();
+//            while (count < limit && lines.size() > 0) {
+//                int random = randomizer.nextInt(lines.size());
+//                bwTest.write(lines.remove(random));
+//                count++;
+//            }
+//            for (String toWrite:lines) {
+//                bwTrain.write(toWrite);
+//            }
+
+            // fixed splitting
             for (int i = 0; i < lines.size(); i++) {
                 if (i < limit) {
                     bwTrain.write(lines.get(i));
@@ -265,6 +285,7 @@ public class Recognizer {
                     bwTest.write(lines.get(i));
                 }
             }
+
             if (bwTest != null) bwTest.close();
         } else {
             for (String l : lines) {

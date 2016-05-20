@@ -74,16 +74,33 @@ public class App
                 }
             } else if ("ner".equalsIgnoreCase(task)) {
                 Recognizer recognizer;
-                int scenario = 0;
                 String option = args[1];
-                if ("-eval".equalsIgnoreCase(option)) {
+                if ("-traintest".equalsIgnoreCase(option)) {
                     String lang = args[2];
                     String name = "model." + lang;
                     String trainFile = args[3];
-                    String trainFileConverted = trainFile + ".train";
-                    String testFileConverted = trainFile + ".test";
+                    String testFile = args[4];
+                    String trainFileConverted = trainFile + ".opennlp";
+                    String testFileConverted = testFile + ".opennlp";
+                    int scenario = (args.length >= 6) ? Integer.parseInt(args[5]) : 0;
+                    int evalType = (args.length >= 7) ? Integer.parseInt(args[6]) : 0;
+                    Recognizer.convertTrainFile(trainFile, trainFileConverted);
+                    Recognizer.convertTrainFile(testFile, testFileConverted);
+                    recognizer = new Recognizer(trainFileConverted, lang, name, scenario);
+                    System.out.println();
+                    if (evalType == 1) {
+                        System.out.println(recognizer.evaluateMUC(testFileConverted));
+                    } else {
+                        System.out.println(recognizer.evaluateExactMatch(testFileConverted));
+                    }
+                } else if ("-eval".equalsIgnoreCase(option)) {
+                    String lang = args[2];
+                    String name = "model." + lang;
+                    String trainFile = args[3];
+                    String trainFileConverted = trainFile + ".train.opennlp";
+                    String testFileConverted = trainFile + ".test.opennlp";
                     String[] proportion = args[4].split(":");
-                    scenario = Integer.parseInt(args[5]);
+                    int scenario = (args.length >= 6) ? Integer.parseInt(args[5]) : 0;
                     int evalType = (args.length >= 7) ? Integer.parseInt(args[6]) : 0;
                     // split train file for cross-validation
                     int trainNumber = Integer.parseInt(proportion[0]);
@@ -100,7 +117,7 @@ public class App
                 } else if ("-enamex".equalsIgnoreCase(option)) {
                     String testFileEnamex = args[2];
                     String testFileConverted = testFileEnamex + ".opennlp";
-                    scenario = Integer.parseInt(args[3]);
+                    int scenario = (args.length >= 4) ? Integer.parseInt(args[3]) : 0;
                     int evalType = (args.length >= 5) ? Integer.parseInt(args[4]) : 0;
                     Recognizer.convertTrainFile(testFileEnamex, testFileConverted);
                     recognizer = new Recognizer(scenario);
@@ -111,7 +128,7 @@ public class App
                     }
                 } else if (args.length >= 3) {
                     String testFile = args[1];
-                    scenario = Integer.parseInt(args[2]);
+                    int scenario = (args.length >= 3) ? Integer.parseInt(args[2]) : 0;
                     recognizer = new Recognizer(scenario);
                     recognizer.find(testFile, App.getFileDir(testFile) + "output.txt");
                 } else {

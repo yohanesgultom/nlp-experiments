@@ -29,6 +29,8 @@ Train and evaluate a model using MUC/ENAMEX-annotated corpus. Required arguments
 * Scenario id (0-7)
 * (Optional) Evaluation type (0: Exact Match or 1: MUC)
 
+> Missed classification will be saved in `[ENAMEX/MUC annotated text file].trained.missed`
+
 Usage:
 ```
 $ ./nlp ner -eval [language code] [ENAMEX/MUC annotated text file] [train data:test data] [scenario id] [optional:eval type]
@@ -45,6 +47,8 @@ Evaluate with pre-trained model using test corpus (ENAMEX/annotated). Required a
 * Testing corpus (MUC/ENAMEX annotated text file)
 * Scenario id (0-7)
 * (Optional) Evaluation type (0: Exact Match or 1: MUC)
+
+> Missed classification will be saved in `[ENAMEX/MUC annotated text file].opennlp.missed`
 
 Usage:
 ```

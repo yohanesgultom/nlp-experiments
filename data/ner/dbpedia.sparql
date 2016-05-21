@@ -1,0 +1,25 @@
+# Nama Indonesia
+select ?name
+where {
+  ?ins rdfs:label ?name.
+  ?ins dbpedia-owl:nationality dbpedia-id:Indonesia.
+}
+# Pemain Bola
+select ?name
+where {
+    ?ins rdfs:label ?name.
+    ?ins rdf:type dbpedia-owl:SoccerPlayer.
+}
+
+# Klub Bola 
+select ?name 
+where { 
+        ?ins rdfs:label ?name. 
+        ?ins rdf:type dbpedia-owl:SoccerClub. 
+} 
+# Nama Perusahaan
+select ?name
+where {
+    ?ins rdfs:label ?name.
+    ?ins rdf:type dbpedia-owl:Company.
+}

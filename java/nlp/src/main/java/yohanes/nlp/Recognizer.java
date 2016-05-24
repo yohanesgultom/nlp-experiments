@@ -199,7 +199,7 @@ public class Recognizer {
             spans = this.find(tokens);
             toWrite = Recognizer.spansToMUCAnnotatedString(spans, tokens);
             if (toWrite != null) {
-                bw.write(toWrite);
+                bw.write(toWrite + "\n");
             }
         }
 
